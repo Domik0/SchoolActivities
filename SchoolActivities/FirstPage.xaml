@@ -1,0 +1,55 @@
+﻿<Page x:Class="SchoolActivities.FirstPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SchoolActivities"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FirstPage">
+
+    <Grid Background="#fff">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="3" Text="Добро пожаловать!" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+
+        <Border x:Name="phoneBorder" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" CornerRadius="3.5" BorderBrush="Black" BorderThickness="1" UseLayoutRounding="True" Height="85" Width="493">
+            <Grid>
+                <TextBlock x:Name="prevUserPhoneNumberText" Text="Номер телефона" VerticalAlignment="Center" Margin="23,0,20,0" Opacity="0.6" FontSize="28" FontWeight="Regular"/>
+                <TextBox x:Name="userPhoneNumberText" TextChanged="UserPhoneNumberText_TextChanged" VerticalAlignment="Center" FontSize="28" FontWeight="Regular" BorderThickness="0" Margin="23,0,20,0" Background="Transparent"/>
+            </Grid>
+        </Border>
+        <Border x:Name="passwordBorder" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="3" CornerRadius="3.5" BorderBrush="Black" BorderThickness="1" UseLayoutRounding="True" Height="85" Width="493">
+            <Grid>
+                <TextBlock x:Name="prevUserPasswordText" Text="Пароль" VerticalAlignment="Center" Margin="23,0,20,0" Opacity="0.6" FontSize="28" FontWeight="Regular"/>
+                <TextBox x:Name="userPasswordText" TextChanged="userPasswordText_TextChanged" VerticalAlignment="Center" FontSize="28" FontWeight="Regular" BorderThickness="0" Margin="23,0,20,0" Background="Transparent"/>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Center" Orientation="Vertical" Margin="0,0,0,30">
+            <TextBlock x:Name="errorLogIn" Text="Номер или пароль введен неверно" Margin="0,0,0,7" HorizontalAlignment="Center" FontSize="16" Foreground="#FF0000" FontWeight="Regular" Visibility="Hidden"/>
+
+            <Button  Width="300" Height="50" Click="LoginButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="BorderButtonLogIn" CornerRadius="4" Background="#19A964">
+                            <TextBlock Text="ВОЙТИ" FontSize="17" FontWeight="Medium"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        
+    </Grid>
+</Page>

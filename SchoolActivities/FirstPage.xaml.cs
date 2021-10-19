@@ -51,6 +51,7 @@ namespace SchoolActivities
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            //Проверка на данные у Учителя, если нету такого, то код внизу! Иначе переход на другое окно MainInfoWindow
             errorLogIn.Visibility = Visibility.Visible;
         }
     }

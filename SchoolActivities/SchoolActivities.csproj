@@ -110,6 +110,9 @@
     <Compile Include="Teacher.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
+    <Compile Include="TeacherMainPage.xaml.cs">
+      <DependentUpon>TeacherMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimeTable.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeacherMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

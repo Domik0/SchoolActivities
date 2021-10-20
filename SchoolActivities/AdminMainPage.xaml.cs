@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SchoolActivities
 {
     /// <summary>
-    /// Interaction logic for MainInfoWindow.xaml
+    /// Interaction logic for AdminMainPage.xaml
     /// </summary>
-    public partial class MainInfoWindow : Window
+    public partial class AdminMainPage : Page
     {
-        public MainInfoWindow(Teacher teacher)
+        public AdminMainPage(Teacher teacher)
         {
             InitializeComponent();
         }

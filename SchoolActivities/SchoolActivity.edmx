@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="u1504925_shoolactivitiesModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="circle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_teacher" Type="int" />
+          <Property Name="title" Type="varchar" MaxLength="45" />
+          <Property Name="cabinet" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="id_circle" />
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_circle" Type="int" Nullable="false" />
+          <Property Name="id_student" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="report">
+          <Key>
+            <PropertyRef Name="id_time_table" />
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_time_table" Type="int" Nullable="false" />
+          <Property Name="id_student" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="45" />
+          <Property Name="lastName" Type="varchar" MaxLength="45" />
+          <Property Name="patronymic" Type="varchar" MaxLength="45" />
+          <Property Name="birthday" Type="datetime" Precision="0" />
+          <Property Name="class" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="45" />
+          <Property Name="last_name" Type="varchar" MaxLength="45" />
+          <Property Name="patronymic" Type="varchar" MaxLength="45" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="phone_number" Type="varchar" MaxLength="45" />
+          <Property Name="experience" Type="double" />
+          <Property Name="administrator_status" Type="bit" />
+          <Property Name="password" Type="varchar" MaxLength="55" />
+        </EntityType>
+        <EntityType Name="time_table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_circle" Type="int" />
+          <Property Name="date_and_time" Type="datetime" Precision="0" />
+        </EntityType>
+        <Association Name="circle1">
+          <End Role="circle" Type="Self.circle" Multiplicity="0..1" />
+          <End Role="time_table" Type="Self.time_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="circle">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="time_table">
+              <PropertyRef Name="id_circle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dat_report">
+          <End Role="time_table" Type="Self.time_table" Multiplicity="1" />
+          <End Role="report" Type="Self.report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="time_table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="id_time_table" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="groupFKStudent">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="group" Type="Self.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="groupFKTeacher">
+          <End Role="circle" Type="Self.circle" Multiplicity="1" />
+          <End Role="group" Type="Self.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="circle">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="id_circle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="student_report">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="report" Type="Self.report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="teacher_circle">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+          <End Role="circle" Type="Self.circle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="circle">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="u1504925_shoolactivitiesModelStoreContainer">
+          <EntitySet Name="circle" EntityType="Self.circle" Schema="" store:Type="Tables" />
+          <EntitySet Name="group" EntityType="Self.group" Schema="" store:Type="Tables" />
+          <EntitySet Name="report" EntityType="Self.report" Schema="" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="" store:Type="Tables" />
+          <EntitySet Name="teacher" EntityType="Self.teacher" Schema="" store:Type="Tables" />
+          <EntitySet Name="time_table" EntityType="Self.time_table" Schema="" store:Type="Tables" />
+          <AssociationSet Name="circle1" Association="Self.circle1">
+            <End Role="circle" EntitySet="circle" />
+            <End Role="time_table" EntitySet="time_table" />
+          </AssociationSet>
+          <AssociationSet Name="dat_report" Association="Self.dat_report">
+            <End Role="time_table" EntitySet="time_table" />
+            <End Role="report" EntitySet="report" />
+          </AssociationSet>
+          <AssociationSet Name="groupFKStudent" Association="Self.groupFKStudent">
+            <End Role="student" EntitySet="student" />
+            <End Role="group" EntitySet="group" />
+          </AssociationSet>
+          <AssociationSet Name="groupFKTeacher" Association="Self.groupFKTeacher">
+            <End Role="circle" EntitySet="circle" />
+            <End Role="group" EntitySet="group" />
+          </AssociationSet>
+          <AssociationSet Name="student_report" Association="Self.student_report">
+            <End Role="student" EntitySet="student" />
+            <End Role="report" EntitySet="report" />
+          </AssociationSet>
+          <AssociationSet Name="teacher_circle" Association="Self.teacher_circle">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="circle" EntitySet="circle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="u1504925_shoolactivitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Circle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Cabinet" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TimeTable" Relationship="Self.circle1" FromRole="circle" ToRole="time_table" />
+          <NavigationProperty Name="Teacher" Relationship="Self.teacher_circle" FromRole="circle" ToRole="teacher" />
+          <NavigationProperty Name="Students" Relationship="Self.group" FromRole="circle" ToRole="student" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" />
+          <Property Name="ClassGroup" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Circles" Relationship="Self.group" FromRole="student" ToRole="circle" />
+          <NavigationProperty Name="TimeTable" Relationship="Self.report" FromRole="student" ToRole="time_table" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Experience" Type="Double" />
+          <Property Name="AdministratorStatus" Type="Boolean" />
+          <Property Name="Password" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Circles" Relationship="Self.teacher_circle" FromRole="teacher" ToRole="circle" />
+        </EntityType>
+        <EntityType Name="TimeTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CircleId" Type="Int32" />
+          <Property Name="DateAndTime" Type="DateTime" />
+          <NavigationProperty Name="Circle" Relationship="Self.circle1" FromRole="time_table" ToRole="circle" />
+          <NavigationProperty Name="Students" Relationship="Self.report" FromRole="time_table" ToRole="student" />
+        </EntityType>
+        <Association Name="circle1">
+          <End Role="circle" Type="u1504925_shoolactivitiesModel.Circle" Multiplicity="0..1" />
+          <End Role="time_table" Type="u1504925_shoolactivitiesModel.TimeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="circle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="time_table">
+              <PropertyRef Name="CircleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="teacher_circle">
+          <End Role="teacher" Type="u1504925_shoolactivitiesModel.Teacher" Multiplicity="0..1" />
+          <End Role="circle" Type="u1504925_shoolactivitiesModel.Circle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="circle">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="group">
+          <End Role="student" Type="u1504925_shoolactivitiesModel.Student" Multiplicity="*" />
+          <End Role="circle" Type="u1504925_shoolactivitiesModel.Circle" Multiplicity="*" />
+        </Association>
+        <Association Name="report">
+          <End Role="time_table" Type="u1504925_shoolactivitiesModel.TimeTable" Multiplicity="*" />
+          <End Role="student" Type="u1504925_shoolactivitiesModel.Student" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SchoolActivitiesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Circles1" EntityType="u1504925_shoolactivitiesModel.Circle" />
+          <EntitySet Name="Students1" EntityType="u1504925_shoolactivitiesModel.Student" />
+          <EntitySet Name="Teachers1" EntityType="u1504925_shoolactivitiesModel.Teacher" />
+          <EntitySet Name="TimeTables" EntityType="u1504925_shoolactivitiesModel.TimeTable" />
+          <AssociationSet Name="circle1" Association="Self.circle1">
+            <End Role="circle" EntitySet="Circles1" />
+            <End Role="time_table" EntitySet="TimeTables" />
+          </AssociationSet>
+          <AssociationSet Name="teacher_circle" Association="Self.teacher_circle">
+            <End Role="teacher" EntitySet="Teachers1" />
+            <End Role="circle" EntitySet="Circles1" />
+          </AssociationSet>
+          <AssociationSet Name="group" Association="Self.group">
+            <End Role="student" EntitySet="Students1" />
+            <End Role="circle" EntitySet="Circles1" />
+          </AssociationSet>
+          <AssociationSet Name="report" Association="Self.report">
+            <End Role="time_table" EntitySet="TimeTables" />
+            <End Role="student" EntitySet="Students1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="u1504925_shoolactivitiesModelStoreContainer" CdmEntityContainer="SchoolActivitiesEntities">
+          <EntitySetMapping Name="Circles1">
+            <EntityTypeMapping TypeName="u1504925_shoolactivitiesModel.Circle">
+              <MappingFragment StoreEntitySet="circle">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="TeacherId" ColumnName="id_teacher" />
+                <ScalarProperty Name="Title" ColumnName="title" />
+                <ScalarProperty Name="Cabinet" ColumnName="cabinet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students1">
+            <EntityTypeMapping TypeName="u1504925_shoolactivitiesModel.Student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="FirstName" ColumnName="first_name" />
+                <ScalarProperty Name="LastName" ColumnName="lastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="Birthday" ColumnName="birthday" />
+                <ScalarProperty Name="ClassGroup" ColumnName="class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers1">
+            <EntityTypeMapping TypeName="u1504925_shoolactivitiesModel.Teacher">
+              <MappingFragment StoreEntitySet="teacher">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="FirstName" ColumnName="first_name" />
+                <ScalarProperty Name="LastName" ColumnName="last_name" />
+                <ScalarProperty Name="Patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="Birthday" ColumnName="birthday" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="phone_number" />
+                <ScalarProperty Name="Experience" ColumnName="experience" />
+                <ScalarProperty Name="AdministratorStatus" ColumnName="administrator_status" />
+                <ScalarProperty Name="Password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeTables">
+            <EntityTypeMapping TypeName="u1504925_shoolactivitiesModel.TimeTable">
+              <MappingFragment StoreEntitySet="time_table">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="CircleId" ColumnName="id_circle" />
+                <ScalarProperty Name="DateAndTime" ColumnName="date_and_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="group" TypeName="u1504925_shoolactivitiesModel.group" StoreEntitySet="group">
+            <EndProperty Name="student">
+              <ScalarProperty Name="Id" ColumnName="id_student" />
+            </EndProperty>
+            <EndProperty Name="circle">
+              <ScalarProperty Name="Id" ColumnName="id_circle" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="report" TypeName="u1504925_shoolactivitiesModel.report" StoreEntitySet="report">
+            <EndProperty Name="time_table">
+              <ScalarProperty Name="Id" ColumnName="id_time_table" />
+            </EndProperty>
+            <EndProperty Name="student">
+              <ScalarProperty Name="Id" ColumnName="id_student" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

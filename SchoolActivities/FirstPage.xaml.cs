@@ -52,7 +52,25 @@ namespace SchoolActivities
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             //Проверка на данные у Учителя, если нету такого, то проверка на Админа, иначе код внизу! И переход на другое окно MainInfoWindow
-            errorLogIn.Visibility = Visibility.Visible;
+            var teacher = App.db.Teachers.Where(t => t.PhoneNumber == userPhoneNumberText.Text).FirstOrDefault();
+            if (teacher != null && teacher.Password == userPasswordText.Text)
+            {
+                if (teacher.AdministratorStatus == true)
+                {
+                    //открывает страничку админа
+                    NavigationService.Navigate(new AdminMainPage(teacher));
+                }
+                else
+                {
+                    //открывает странчику учителя
+                    NavigationService.Navigate(new MainInfoWindow(teacher));
+                }
+            }
+            else
+            {
+                //выдает ошибочку
+                errorLogIn.Visibility = Visibility.Visible;
+            }
         }
     }
 }

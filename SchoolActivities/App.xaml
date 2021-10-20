@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:SchoolActivities"
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="FrameworkElement">
+            <Setter Property="TextElement.FontFamily" Value="Roboto"/>
+        </Style>
     </Application.Resources>
 </Application>

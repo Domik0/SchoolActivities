@@ -25,9 +25,9 @@ namespace SchoolActivities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Circle> Circles1 { get; set; }
-        public virtual DbSet<Student> Students1 { get; set; }
-        public virtual DbSet<Teacher> Teachers1 { get; set; }
+        public virtual DbSet<Circle> Circles { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<TimeTable> TimeTables { get; set; }
     }
 }

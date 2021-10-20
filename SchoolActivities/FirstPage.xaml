@@ -21,7 +21,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.ColumnSpan="3" Text="Добро пожаловать11221!" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Grid.ColumnSpan="3" Text="Добро пожаловать!" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
 
         <Border x:Name="phoneBorder" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" CornerRadius="3.5" BorderBrush="Black" BorderThickness="1" UseLayoutRounding="True" Height="85" Width="493">
             <Grid>

@@ -10,27 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SchoolActivities
 {
     /// <summary>
-    /// Interaction logic for MainInfoWindow.xaml
+    /// Interaction logic for TeacherMainPage.xaml
     /// </summary>
-    public partial class MainInfoWindow : Window
+    public partial class TeacherMainPage : Page
     {
-        public MainInfoWindow(Teacher teacher)
+        public TeacherMainPage(Teacher teacher)
         {
             InitializeComponent();
-            Application.Current.MainWindow.Close();
-            if (teacher.AdministratorStatus == true)
-            {
-                frame.Content = new AdminMainPage(teacher);
-            }
-            else
-            {
-                frame.Content = new TeacherMainPage(teacher);
-            }
         }
     }
 }

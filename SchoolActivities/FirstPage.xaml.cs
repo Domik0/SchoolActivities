@@ -43,20 +43,14 @@ namespace SchoolActivities
             var teacher = App.db.Teachers.Where(t => t.PhoneNumber == userPhoneNumberText.Text).FirstOrDefault();
             if (teacher != null && teacher.Password == userPasswordText.Password)
             {
-                if (teacher.AdministratorStatus == true)
-                {
-                    //открывает страничку админа
-                    NavigationService.Navigate(new AdminMainPage(teacher));
-                }
-                else
-                {
-                    //открывает странчику учителя
-                    NavigationService.Navigate(new MainInfoWindow(teacher));
-                }
+                //открывает главное окно с инфой
+                MainInfoWindow mw = new MainInfoWindow(teacher);
+                mw.ShowDialog();
+
             }
             else
             {
-                //выдает ошибочку
+                //выдает ошибочку если некорректные данные
                 errorLogIn.Visibility = Visibility.Visible;
             }
         }

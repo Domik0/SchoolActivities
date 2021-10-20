@@ -37,23 +37,11 @@ namespace SchoolActivities
             }
         }
 
-        private void userPasswordText_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (userPasswordText.Text != "")
-            {
-                prevUserPasswordText.Opacity = 0;
-            }
-            else
-            {
-                prevUserPasswordText.Opacity = 0.6;
-            }
-        }
-
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             //Проверка на данные у Учителя, если нету такого, то проверка на Админа, иначе код внизу! И переход на другое окно MainInfoWindow
             var teacher = App.db.Teachers.Where(t => t.PhoneNumber == userPhoneNumberText.Text).FirstOrDefault();
-            if (teacher != null && teacher.Password == userPasswordText.Text)
+            if (teacher != null && teacher.Password == userPasswordText.Password)
             {
                 if (teacher.AdministratorStatus == true)
                 {
@@ -70,6 +58,18 @@ namespace SchoolActivities
             {
                 //выдает ошибочку
                 errorLogIn.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void userPasswordText_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (userPasswordText.Password != "")
+            {
+                prevUserPasswordText.Opacity = 0;
+            }
+            else
+            {
+                prevUserPasswordText.Opacity = 0.6;
             }
         }
     }

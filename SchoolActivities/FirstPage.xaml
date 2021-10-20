@@ -32,7 +32,7 @@
         <Border x:Name="passwordBorder" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="3" CornerRadius="3.5" BorderBrush="Black" BorderThickness="1" UseLayoutRounding="True" Height="85" Width="493">
             <Grid>
                 <TextBlock x:Name="prevUserPasswordText" Text="Пароль" VerticalAlignment="Center" Margin="23,0,20,0" Opacity="0.6" FontSize="28" FontWeight="Regular"/>
-                <TextBox x:Name="userPasswordText" TextChanged="userPasswordText_TextChanged" VerticalAlignment="Center" FontSize="28" FontWeight="Regular" BorderThickness="0" Margin="23,0,20,0" Background="Transparent"/>
+                <PasswordBox x:Name="userPasswordText" PasswordChanged="userPasswordText_PasswordChanged" VerticalAlignment="Center" FontSize="28" FontWeight="Regular" BorderThickness="0" Margin="23,0,20,0" Background="Transparent"/>
             </Grid>
         </Border>
 

@@ -136,12 +136,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="u1504925_shoolactivitiesModelStoreContainer">
-          <EntitySet Name="circle" EntityType="Self.circle" Schema="u1504925_shoolactivities" store:Type="Tables" />
-          <EntitySet Name="group" EntityType="Self.group" Schema="u1504925_shoolactivities" store:Type="Tables" />
-          <EntitySet Name="report" EntityType="Self.report" Schema="u1504925_shoolactivities" store:Type="Tables" />
-          <EntitySet Name="student" EntityType="Self.student" Schema="u1504925_shoolactivities" store:Type="Tables" />
-          <EntitySet Name="teacher" EntityType="Self.teacher" Schema="u1504925_shoolactivities" store:Type="Tables" />
-          <EntitySet Name="time_table" EntityType="Self.time_table" Schema="u1504925_shoolactivities" store:Type="Tables" />
+          <EntitySet Name="circle" EntityType="Self.circle" Schema="" store:Type="Tables" />
+          <EntitySet Name="group" EntityType="Self.group" Schema="" store:Type="Tables" />
+          <EntitySet Name="report" EntityType="Self.report" Schema="" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="" store:Type="Tables" />
+          <EntitySet Name="teacher" EntityType="Self.teacher" Schema="" store:Type="Tables" />
+          <EntitySet Name="time_table" EntityType="Self.time_table" Schema="" store:Type="Tables" />
           <AssociationSet Name="circle1" Association="Self.circle1">
             <End Role="circle" EntitySet="circle" />
             <End Role="time_table" EntitySet="time_table" />

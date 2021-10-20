@@ -77,11 +77,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Circle.cs">
+      <DependentUpon>SchoolActivity.tt</DependentUpon>
+    </Compile>
     <Compile Include="FirstPage.xaml.cs">
       <DependentUpon>FirstPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolActivity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolActivity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolActivity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolActivity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolActivity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolActivity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Student.cs">
+      <DependentUpon>SchoolActivity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher.cs">
+      <DependentUpon>SchoolActivity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTable.cs">
+      <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
     <Page Include="FirstPage.xaml">
       <SubType>Designer</SubType>
@@ -126,12 +153,31 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="SchoolActivity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolActivity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SchoolActivity.edmx.diagram">
+      <DependentUpon>SchoolActivity.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SchoolActivity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolActivity.edmx</DependentUpon>
+      <LastGenOutput>SchoolActivity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SchoolActivity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolActivity.edmx</DependentUpon>
+      <LastGenOutput>SchoolActivity.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

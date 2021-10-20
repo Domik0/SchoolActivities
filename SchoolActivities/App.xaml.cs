@@ -13,5 +13,6 @@ namespace SchoolActivities
     /// </summary>
     public partial class App : Application
     {
+        public static SchoolActivitiesEntities db = new SchoolActivitiesEntities();
     }
 }

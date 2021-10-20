@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SchoolActivities"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1280"
       Title="TeacherMainPage">
 
     <Grid x:Name="gridTeacher" Background="#fff">
@@ -36,7 +35,7 @@
 
                 </ComboBox>
             </StackPanel>
-
+        
             <TextBlock Grid.Column="2" Text="Иванова Нина Петровна" FontSize="26" HorizontalAlignment="Right" Margin="10,10"/>
         </Grid>
     </Grid>

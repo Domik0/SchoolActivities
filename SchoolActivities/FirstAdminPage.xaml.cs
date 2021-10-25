@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SchoolActivities
 {
     /// <summary>
-    /// Interaction logic for TeachersProfilePage.xaml
+    /// Interaction logic for FirstAdminPage.xaml
     /// </summary>
-    public partial class TeachersProfilePage : Page
+    public partial class FirstAdminPage : Page
     {
-        public TeachersProfilePage()
+        public FirstAdminPage()
         {
             InitializeComponent();
         }

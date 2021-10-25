@@ -47,7 +47,6 @@ namespace SchoolActivities
                 //открывает главное окно с инфой
                 MainInfoWindow mw = new MainInfoWindow(teacher);
                 mw.ShowDialog();
-
             }
             else
             {

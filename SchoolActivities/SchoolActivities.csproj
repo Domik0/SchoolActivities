@@ -83,6 +83,9 @@
     <Compile Include="Circle.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
+    <Compile Include="FirstAdminPage.xaml.cs">
+      <DependentUpon>FirstAdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FirstPage.xaml.cs">
       <DependentUpon>FirstPage.xaml</DependentUpon>
     </Compile>
@@ -113,10 +116,17 @@
     <Compile Include="TeacherMainPage.xaml.cs">
       <DependentUpon>TeacherMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeachersProfilePage.xaml.cs">
+      <DependentUpon>TeachersProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimeTable.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
     <Page Include="AdminMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FirstAdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TeacherMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeachersProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

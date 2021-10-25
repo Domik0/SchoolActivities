@@ -22,7 +22,6 @@ namespace SchoolActivities
     {
         public FirstPage()
         {
-            //bhisdfbjisdbjisdsdbj
             InitializeComponent();
         }
 

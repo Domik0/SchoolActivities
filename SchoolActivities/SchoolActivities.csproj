@@ -85,6 +85,9 @@
     <Compile Include="AdminMainPage.xaml.cs">
       <DependentUpon>AdminMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminStatistikPage.xaml.cs">
+      <DependentUpon>AdminStatistikPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Circle.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
     <Page Include="AdminMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminStatistikPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

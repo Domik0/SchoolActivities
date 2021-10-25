@@ -103,6 +103,9 @@
     <Compile Include="AdminTeachersPage.xaml.cs">
       <DependentUpon>AdminTeachersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminStatistikPage.xaml.cs">
+      <DependentUpon>AdminStatistikPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Circle.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>

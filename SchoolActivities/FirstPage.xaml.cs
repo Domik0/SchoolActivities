@@ -27,6 +27,7 @@ namespace SchoolActivities
 
         private void UserPhoneNumberText_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Подсказка по номеру телефона
             if (userPhoneNumberText.Text != "")
             {
                 prevUserPhoneNumberText.Opacity = 0;
@@ -43,26 +44,20 @@ namespace SchoolActivities
             var teacher = App.db.Teachers.Where(t => t.PhoneNumber == userPhoneNumberText.Text).FirstOrDefault();
             if (teacher != null && teacher.Password == userPasswordText.Password)
             {
-                if (teacher.AdministratorStatus == true)
-                {
-                    //открывает страничку админа
-                    NavigationService.Navigate(new AdminMainPage(teacher));
-                }
-                else
-                {
-                    //открывает странчику учителя
-                    NavigationService.Navigate(new MainInfoWindow(teacher));
-                }
+                //открывает главное окно с инфой
+                MainInfoWindow mw = new MainInfoWindow(teacher);
+                mw.ShowDialog();
             }
             else
             {
-                //выдает ошибочку
+                //выдает ошибочку если некорректные данные
                 errorLogIn.Visibility = Visibility.Visible;
             }
         }
 
         private void userPasswordText_PasswordChanged(object sender, RoutedEventArgs e)
         {
+            //Подсказка по паролю
             if (userPasswordText.Password != "")
             {
                 prevUserPasswordText.Opacity = 0;

@@ -110,6 +110,9 @@
     <Compile Include="Teacher.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
+    <Compile Include="TeacherMainPage.xaml.cs">
+      <DependentUpon>TeacherMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimeTable.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeacherMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,6 +182,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\statistika.png" />
+    <Resource Include="Images\teacher.png" />
+    <Resource Include="Images\circles.png" />
+    <Resource Include="Images\profile.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

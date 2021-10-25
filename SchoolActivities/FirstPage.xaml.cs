@@ -27,6 +27,7 @@ namespace SchoolActivities
 
         private void UserPhoneNumberText_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Подсказка по номеру телефона
             if (userPhoneNumberText.Text != "")
             {
                 prevUserPhoneNumberText.Opacity = 0;
@@ -46,7 +47,6 @@ namespace SchoolActivities
                 //открывает главное окно с инфой
                 MainInfoWindow mw = new MainInfoWindow(teacher);
                 mw.ShowDialog();
-
             }
             else
             {
@@ -57,6 +57,7 @@ namespace SchoolActivities
 
         private void userPasswordText_PasswordChanged(object sender, RoutedEventArgs e)
         {
+            //Подсказка по паролю
             if (userPasswordText.Password != "")
             {
                 prevUserPasswordText.Opacity = 0;

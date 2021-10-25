@@ -5,10 +5,75 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SchoolActivities"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="720" d:DesignWidth="1280"
       Title="AdminMainPage">
 
-    <Grid>
-        
+    <Grid Name="gridAdmin" Background="#fff">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#444">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Админ" Foreground="#fff" FontSize="45" FontWeight="Bold" Margin="20,10"/>
+            <TextBlock Grid.Row="0" Grid.RowSpan="2" Text="Навигация" Foreground="#fff" VerticalAlignment="Center" FontSize="16" Margin="20,0,0,20" FontWeight="DemiBold"/>
+            <Line X1="20" X2="280" Grid.Row="0" Grid.RowSpan="2" Stroke="#fff" VerticalAlignment="Center"/>
+            <Button Grid.Row="1" Height="50">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/statistika.png"/>
+                            <TextBlock Text="Статистика" Foreground="#fff" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="2" Height="50">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/teacher.png" Margin="20,0"/>
+                            <TextBlock Text="Учителя" Foreground="#fff" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Row="3" Height="50">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/circles.png" Margin="20,0"/>
+                            <TextBlock Text="Кружки" Foreground="#fff" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <TextBlock Grid.Row="4" Grid.RowSpan="2" Text="Личное" Foreground="#fff" VerticalAlignment="Center" FontSize="16" Margin="20,0,0,20" FontWeight="DemiBold"/>
+            <Line X1="20" X2="280" Grid.Row="4" Grid.RowSpan="2" Stroke="#fff" VerticalAlignment="Center"/>
+            <Button Grid.Row="5" Height="50">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/profile.png" Margin="20,0,20,0"/>
+                            <TextBlock Text="Профиль" Foreground="#fff" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        <Frame x:Name="frameNavigation" Grid.Column="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

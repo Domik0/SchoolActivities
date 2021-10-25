@@ -8,10 +8,7 @@
       d:DesignHeight="720" d:DesignWidth="980"
       Title="TeachersProfilePage">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <Grid Background="#fff">
+        <TextBlock Text="TEACHER"/>
     </Grid>
 </Page>

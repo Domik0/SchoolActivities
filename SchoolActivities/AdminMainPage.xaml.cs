@@ -24,5 +24,17 @@ namespace SchoolActivities
         {
             InitializeComponent();
         }
+
+        private void TeacherButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Открывает страничку со всеми Учителями
+            frameNavigation.Content = new TeachersProfilePage();
+        }
+
+        private void AdminTextBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            //Открывает заного первую страницу по умолчанию
+            frameNavigation.Content = new FirstAdminPage();
+        }
     }
 }

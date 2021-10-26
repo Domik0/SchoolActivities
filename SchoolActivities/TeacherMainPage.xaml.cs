@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace SchoolActivities
 {
@@ -27,7 +30,18 @@ namespace SchoolActivities
             InitializeComponent();
             NamePrepod.DataContext = teacher;
             this.teacher = teacher;
-            predmetComboBox.ItemsSource = this.teacher.Circles;
+            timeComboBox.ItemsSource = new List<string>()
+            {
+                "Месяц",
+                "Неделя"
+            };
+            List<Circle> circles = new List<Circle>();
+            circles.Add(new Circle()
+            {
+                Title = "Все кружки"
+            });
+            circles.AddRange(this.teacher.Circles);
+            predmetComboBox.ItemsSource = circles;
             GenerateCalendary();
         }
 
@@ -35,8 +49,8 @@ namespace SchoolActivities
         {
             List<DayForCalendary> days = new List<DayForCalendary>();
 
-            int nWeek = ((int)(new DateTime(DateTime.Today.Year, DateTime.Today.Month,1).DayOfWeek) + 6) %7;
-            
+            int nWeek = ((int)(new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).DayOfWeek) + 6) % 7;
+
             for (int i = 0; i < nWeek; i++)
             {
                 days.Add(new DayForCalendary());
@@ -47,48 +61,56 @@ namespace SchoolActivities
             }
 
 
-            if (timeComboBox.SelectionBoxItem as string == "Месяц")
+
+            foreach (Circle circle in teacher.Circles)
             {
-                foreach (Circle circle in teacher.Circles)
+                if (circle == predmetComboBox.SelectedItem as Circle || (predmetComboBox.SelectedItem as Circle)?.Title == "Все кружки")
                 {
                     foreach (TimeTable time in circle.TimeTable)
                     {
                         foreach (DayForCalendary day in days)
                         {
-                            if (day.Day != null)
+                            if (timeComboBox.SelectedItem as string == "Месяц")
                             {
-                                if (day.Day.Value.Date == time.DateAndTime.Value.Date)
+                                if (day.Day != null)
                                 {
-                                    day.Circles.Add(circle, day.Day);
+                                    if (day.Day.Value.Date == time.DateAndTime.Value.Date)
+                                    {
+                                        day.Circles.Add(new CirclesForDay() { cir = circle, dt = time.DateAndTime });
+                                    }
+                                }
+                            }
+                            else if ((timeComboBox.SelectedItem as string) == "Неделя")
+                            {
+                                if (day.Day == time.DateAndTime && day.Day > DateTime.Today.AddDays(-7) && day.Day < DateTime.Today.AddDays(7))
+                                {
+                                    day.Circles.Add(new CirclesForDay() { cir = circle, dt = day.Day });
+                                }
+                                if (day.Day < DateTime.Today.AddDays(-7) || day.Day > DateTime.Today.AddDays(7))
+                                {
+                                    day.Day = null;
                                 }
                             }
                         }
                     }
                 }
             }
-            else if((timeComboBox.SelectedItem as string) == "Неделя")
-            {
-                foreach (Circle circle in teacher.Circles)
-                {
-                    foreach (TimeTable time in circle.TimeTable)
-                    {
-                        foreach (DayForCalendary day in days)
-                        {
-                            if (day.Day == time.DateAndTime && day.Day > DateTime.Today.AddDays(-7) && day.Day < DateTime.Today.AddDays(7))
-                            {
-                                day.Circles.Add(circle, day.Day);
-                            }
-                        }
-                    }
-                }
-            }
 
-            CircleCalendary.ItemsSource = days;
-        } 
+            Calendary.ItemsSource = days;
+        }
 
-        private void SelectDayClick(object sender, SelectionChangedEventArgs e)
+        private void CircleInDay_click(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show((((sender as Border).DataContext) as CirclesForDay).cir.Title);
+        }
+
+        private void ComboBoxChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Calendary != null)
+            {
+                Calendary.ItemsSource = null;
+                GenerateCalendary();
+            }
         }
     }
 }

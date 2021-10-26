@@ -9,7 +9,12 @@
       Title="AdminCirclesPage">
 
     <Grid Background="#fff">
-        <ListView Name="circlesList" ScrollViewer.CanContentScroll="False" MouseUp="CirclesList_MouseUp">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image x:Name="plusCircleImage" Source="Images/plusCircle.png" Width="50" HorizontalAlignment="Center" MouseUp="plusCircleImage_MouseUp"/>
+        <ListView Name="circlesList" Grid.Row="1" ScrollViewer.CanContentScroll="False" MouseUp="CirclesList_MouseUp" BorderThickness="0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Name="uniformGrid" Columns="3" Margin="50" HorizontalAlignment="Center"/>

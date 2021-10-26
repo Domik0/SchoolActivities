@@ -21,6 +21,7 @@ namespace SchoolActivities
     /// </summary>
     public partial class AdminCirclesPage : Page
     {
+        bool isAdd;
         public AdminCirclesPage()
         {
             InitializeComponent();
@@ -32,13 +33,20 @@ namespace SchoolActivities
             Circle circle = circlesList.SelectedItem as Circle;
             if (circle != null)
             {
-                AdminMainPage.frame.Content = new AdminCirclesInfoPage(circle, this);
+                isAdd = false;
+                AdminMainPage.frame.Content = new AdminCirclesInfoPage(circle, this, isAdd);
             }
         }
 
         public void UpdateListCircles()
         {
             circlesList.ItemsSource = App.db.Circles.Include(r => r.Teacher).ToList();
+        }
+
+        private void plusCircleImage_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            isAdd = true;
+            AdminMainPage.frame.Content = new AdminCirclesInfoPage(this, isAdd);
         }
     }
 }

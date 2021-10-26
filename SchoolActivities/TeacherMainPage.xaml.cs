@@ -101,7 +101,8 @@ namespace SchoolActivities
 
         private void CircleInDay_click(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show((((sender as Border).DataContext) as CirclesForDay).cir.Title);
+            NavigationService.Navigate(
+                new TeacherCircleDayPage(((sender as Border).DataContext) as CirclesForDay));
         }
 
         private void ComboBoxChanged(object sender, SelectionChangedEventArgs e)

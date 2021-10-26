@@ -95,14 +95,14 @@ namespace SchoolActivities
             Teacher teacher = teachersComboBox.SelectedItem as Teacher;
             Circle circle = App.db.Circles.Where(i => i.Id == doCircke.Id).FirstOrDefault();
 
-            circle.Teacher.LastName = teacher.LastName;
-            circle.Teacher.FirstName = teacher.FirstName;
-            circle.Teacher.Patronymic = teacher.Patronymic;
+                circle.Teacher.LastName = teacher.LastName;
+                circle.Teacher.FirstName = teacher.FirstName;
+                circle.Teacher.Patronymic = teacher.Patronymic;
 
-            Circle dopCircle = kabinetComboBox.SelectedItem as Circle;
-            circle.Cabinet = dopCircle.Cabinet;
+                Circle dopCircle = kabinetComboBox.SelectedItem as Circle;
+                circle.Cabinet = dopCircle.Cabinet;
 
-            //App.db.SaveChanges();
+                //App.db.SaveChanges();
 
             parent.UpdateListCircles();
             NavigationService.GoBack();

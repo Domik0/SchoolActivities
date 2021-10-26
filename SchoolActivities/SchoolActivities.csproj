@@ -94,6 +94,12 @@
     <Compile Include="AdminMainPage.xaml.cs">
       <DependentUpon>AdminMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminStatistikPage.xaml.cs">
+      <DependentUpon>AdminStatistikPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminStudentsPage.xaml.cs">
+      <DependentUpon>AdminStudentsPage.xaml</DependentUpon>
+     </Compile>
     <Compile Include="AdminTeachersPage.xaml.cs">
       <DependentUpon>AdminTeachersPage.xaml</DependentUpon>
     </Compile>
@@ -158,7 +164,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AdminStatistikPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminStudentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminTeachersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -236,6 +250,11 @@
     <Resource Include="Images\teacher.png" />
     <Resource Include="Images\circles.png" />
     <Resource Include="Images\profile.png" />
+    <Resource Include="Images\teacherPhoto.png" />
+    <Resource Include="Images\circlePhoto.png" />
+    <Resource Include="Images\strelkaGoBack.png" />
+    <Resource Include="Images\plusCircle.png" />
+    <Resource Include="Images\uchenik.png" />
     <Resource Include="Images\addIcon.png" />
     <Resource Include="Images\IconBirthday.png" />
     <Resource Include="Images\IconExperience.png" />

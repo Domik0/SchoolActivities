@@ -88,6 +88,9 @@
     <Compile Include="AdminMainPage.xaml.cs">
       <DependentUpon>AdminMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminTeachersPage.xaml.cs">
+      <DependentUpon>AdminTeachersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Circle.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
     <Page Include="AdminMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminTeachersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,6 +216,13 @@
     <Resource Include="Images\teacher.png" />
     <Resource Include="Images\circles.png" />
     <Resource Include="Images\profile.png" />
+    <Resource Include="Images\addIcon.png" />
+    <Resource Include="Images\IconBirthday.png" />
+    <Resource Include="Images\IconExperience.png" />
+    <Resource Include="Images\IconPassword.png" />
+    <Resource Include="Images\IconPeople.png" />
+    <Resource Include="Images\IconPhone.png" />
+    <Resource Include="Images\IconSearch.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

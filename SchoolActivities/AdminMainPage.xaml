@@ -29,7 +29,7 @@
             <TextBlock Text="Админ" Foreground="#fff" FontSize="45" FontWeight="Bold" Margin="20,10" MouseUp="AdminTextBlock_MouseUp"/>
             <TextBlock Grid.Row="0" Grid.RowSpan="2" Text="Навигация" Foreground="#fff" VerticalAlignment="Center" FontSize="16" Margin="20,0,0,20" FontWeight="DemiBold"/>
             <Line X1="20" X2="280" Grid.Row="0" Grid.RowSpan="2" Stroke="#fff" VerticalAlignment="Center"/>
-            <Button Grid.Row="1" Height="50">
+            <Button x:Name="statistikButton" Grid.Row="1" Height="50" Click="StatistikButton_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal">
@@ -49,12 +49,22 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="3" Height="50">
+            <Button x:Name="circlesButton" Grid.Row="3" Height="50" Click="CirclesButton_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images/circles.png" Margin="20,0"/>
                             <TextBlock Text="Кружки" Foreground="#fff" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="studentsButton" Grid.Row="4" Height="50" Click="StudentsButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/uchenik.png" Margin="20,0"/>
+                            <TextBlock Text="Ученики" Foreground="#fff" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
                         </StackPanel>
                     </ControlTemplate>
                 </Button.Template>
@@ -74,6 +84,6 @@
             </Button>
         </Grid>
 
-        <Frame x:Name="frameNavigation" Grid.Column="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" Source="FirstAdminPage.xaml"/>
+        <Frame x:Name="frameNavigation" x:FieldModifier="public" Grid.Column="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" Source="FirstAdminPage.xaml"/>
     </Grid>
 </Page>

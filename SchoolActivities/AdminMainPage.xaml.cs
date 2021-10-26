@@ -20,9 +20,11 @@ namespace SchoolActivities
     /// </summary>
     public partial class AdminMainPage : Page
     {
+        public static Frame frame;
         public AdminMainPage(Teacher teacher)
         {
             InitializeComponent();
+            frame = frameNavigation;
         }
 
         private void TeacherButton_Click(object sender, RoutedEventArgs e)
@@ -35,6 +37,21 @@ namespace SchoolActivities
         {
             //Открывает заного первую страницу по умолчанию
             frameNavigation.Content = new FirstAdminPage();
+        }
+
+        private void StatistikButton_Click(object sender, RoutedEventArgs e)
+        {
+            frameNavigation.Content = new AdminStatistikPage();
+        }
+
+        private void CirclesButton_Click(object sender, RoutedEventArgs e)
+        {
+            frameNavigation.Content = new AdminCirclesPage();
+        }
+
+        private void StudentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            frameNavigation.Content = new AdminStudentsPage();
         }
     }
 }

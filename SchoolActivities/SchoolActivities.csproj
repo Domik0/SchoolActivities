@@ -259,6 +259,8 @@
     <Resource Include="Images\IconPeople.png" />
     <Resource Include="Images\IconPhone.png" />
     <Resource Include="Images\IconSearch.png" />
+    <Resource Include="Images\teacherPhoto.png" />
+    <Resource Include="Images\circlePhoto.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

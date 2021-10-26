@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <Image Source="Images/circlePhoto.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Top"/>
-        <TextBox Name="titleCircleTextBox" Grid.Row="2" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" IsReadOnly="True" BorderThickness="0"/>
+        <TextBlock Text="{Binding Title}" Grid.Row="2" Grid.Column="1" FontSize="40" HorizontalAlignment="Center"/>
         
         <TextBlock Text="Преподаватель" Grid.Row="3" Grid.ColumnSpan="2" FontSize="26" Margin="100,0"/>
         <ComboBox Name="teachersComboBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Height="40"
@@ -88,6 +88,6 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Image Source="Images/strelkaGoBack.png" MouseUp="Image_MouseUp"/>
+        <Button Click="Button_Click"/>
     </Grid>
 </Page>

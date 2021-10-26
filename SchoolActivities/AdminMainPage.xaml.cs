@@ -48,5 +48,10 @@ namespace SchoolActivities
         {
             frameNavigation.Content = new AdminCirclesPage();
         }
+
+        private void StudentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            frameNavigation.Content = new AdminStudentsPage();
+        }
     }
 }

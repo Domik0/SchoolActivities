@@ -30,13 +30,8 @@ namespace SchoolActivities
             circleGrid.DataContext = circle;
             teachersComboBox.ItemsSource = App.db.Teachers.ToList();
             teachersComboBox.SelectedItem = circle.Teacher;
-            kabinetComboBox.ItemsSource = App.db.Circles.ToList();
+            kabinetComboBox.ItemsSource = App.db.Circles.ToList().Distinct();
             kabinetComboBox.SelectedItem = circle;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -64,6 +59,11 @@ namespace SchoolActivities
             //App.db.SaveChanges();
 
             parent.UpdateListCircles();
+            NavigationService.GoBack();
+        }
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
             NavigationService.GoBack();
         }
     }

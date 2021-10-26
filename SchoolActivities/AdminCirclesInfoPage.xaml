@@ -76,6 +76,6 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Click="Button_Click"/>
+        <Image Source="Images/strelkaGoBack.png" MouseUp="Image_MouseUp"/>
     </Grid>
 </Page>

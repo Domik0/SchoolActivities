@@ -56,7 +56,9 @@ namespace SchoolActivities
         {
             Student student = studentsInCirclesListView.SelectedItem as Student;
             App.db.Students.Remove(student);
-            //App.db.SaveChanges();
+            App.db.SaveChanges();
+
+            UpdateListCircles();
         }
         public void UpdateListCircles()
         {

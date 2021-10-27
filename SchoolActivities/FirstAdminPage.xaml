@@ -35,7 +35,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="534" Foreground="#fff" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="countStudentsInCirclesTextBlock" Grid.Row="0" Text="534" Foreground="#fff" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Text="Учеников ходят на кружки" TextWrapping="Wrap" TextAlignment="Center" Foreground="#fff" FontSize="24" HorizontalAlignment="Center"/>
                 </Grid>
             </Border>
@@ -45,7 +45,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="8" Foreground="#fff" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Name="countTeacherTextBlock" Grid.Row="0" Text="8" Foreground="#fff" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Text="Учителей преподают" TextWrapping="Wrap" TextAlignment="Center" Foreground="#fff" FontSize="24" HorizontalAlignment="Center"/>
                 </Grid>
             </Border>
@@ -55,7 +55,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="8" Foreground="#fff" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Name="countCirclesTextBlock" Grid.Row="0" Text="8" Foreground="#fff" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Text="Кружков проводятся" TextWrapping="Wrap" TextAlignment="Center" Foreground="#fff" FontSize="24" HorizontalAlignment="Center"/>
                 </Grid>
             </Border>
@@ -65,8 +65,8 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="8" Foreground="#fff" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Row="1" Text="Учителей преподают" TextWrapping="Wrap" TextAlignment="Center" Foreground="#fff" FontSize="24" HorizontalAlignment="Center"/>
+                    <TextBlock Name="countCabinetsTextBlock" Grid.Row="0" Text="8" Foreground="#fff" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Text="Кабинетов" TextWrapping="Wrap" TextAlignment="Center" Foreground="#fff" FontSize="24" HorizontalAlignment="Center"/>
                 </Grid>
             </Border>
         </Grid>

@@ -56,9 +56,18 @@ namespace SchoolActivities
 
         private void Border_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(reportList.Count.ToString());
             timeTable.Students = reportList;
             App.db.SaveChanges();
+        }
+
+        private void FrameworkElement_OnInitialized(object sender, EventArgs e)
+        {
+            var student = (sender as Border).DataContext as Student;
+            var imageFlag = (sender as Border).Child as Image;
+            if (timeTable.Students.Count(t => t == student) > 0)
+            {
+                imageFlag.Visibility = Visibility.Visible;
+            }
         }
     }
 }

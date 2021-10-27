@@ -106,7 +106,7 @@
 
 
 
-                                <Border Grid.Column="3" BorderBrush="Black" Width="50" Height="50" Padding="5" MouseUp="StudentInLesson"
+                                <Border Grid.Column="3" BorderBrush="Black" Width="50" Height="50" Padding="5" MouseUp="StudentInLesson" Initialized="FrameworkElement_OnInitialized"
                                         CornerRadius="15" BorderThickness="1" HorizontalAlignment="Center" DataContext="{Binding .}">
                                     <Image Source="Images/jackdaw.png" Visibility="Hidden"/>
                                     <Border.Style>

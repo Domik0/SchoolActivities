@@ -106,6 +106,12 @@
     <Compile Include="AdminTeachersPage.xaml.cs">
       <DependentUpon>AdminTeachersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminStatistikPage.xaml.cs">
+      <DependentUpon>AdminStatistikPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminStudentsPage.xaml.cs">
+      <DependentUpon>AdminStudentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Circle.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
@@ -271,6 +277,11 @@
     <Resource Include="Images\IconPhone.png" />
     <Resource Include="Images\IconSearch.png" />
     <Resource Include="Images\jackdaw.png" />
+    <Resource Include="Images\teacherPhoto.png" />
+    <Resource Include="Images\circlePhoto.png" />
+    <Resource Include="Images\strelkaGoBack.png" />
+    <Resource Include="Images\plusCircle.png" />
+    <Resource Include="Images\uchenik.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

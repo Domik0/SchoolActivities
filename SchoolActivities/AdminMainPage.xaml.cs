@@ -62,5 +62,10 @@ namespace SchoolActivities
             frameNavigation.Content = new AdminRaspisaniePage(teacher);
 
         }
+
+        private void GoHome(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

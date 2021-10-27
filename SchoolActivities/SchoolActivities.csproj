@@ -238,10 +238,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainInfoWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="TeacherCircleDayPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -256,9 +252,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainInfoWindow.xaml.cs">
-      <DependentUpon>MainInfoWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -315,6 +308,8 @@
     <Resource Include="Images\jackdaw.png" />
     <Resource Include="Images\studentClass.png" />
     <Resource Include="Images\rasp.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\icons-inspektsia.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

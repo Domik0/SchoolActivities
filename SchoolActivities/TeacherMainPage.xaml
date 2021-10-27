@@ -21,7 +21,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+            <Image Grid.Column="0" Source="/Images/home.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="80" Margin="25" MouseUp="GoHome"/>
+
+
+            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0">
                 <TextBlock Text="Предмет" FontSize="26" FontWeight="Regular" HorizontalAlignment="Center" Margin="0,5,0,15"/>
                 <ComboBox Name="predmetComboBox" Width="200" Height="50" SelectionChanged="ComboBoxChanged" SelectedIndex="0"
                           FontSize="20" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">

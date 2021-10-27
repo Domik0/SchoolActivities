@@ -45,8 +45,14 @@ namespace SchoolActivities
             if (teacher != null && teacher.Password == userPasswordText.Password)
             {
                 //открывает главное окно с инфой
-                MainInfoWindow mw = new MainInfoWindow(teacher);
-                mw.ShowDialog();
+                if (teacher.AdministratorStatus == true)
+                {
+                    NavigationService.Content = new AdminMainPage(teacher);
+                }
+                else
+                {
+                    NavigationService.Content = new TeacherMainPage(teacher);
+                }
             }
             else
             {

@@ -21,15 +21,19 @@ namespace SchoolActivities
     public partial class AdminAllProfilePage : Page
     {
         bool isAdd;
-        AdminStudentsPage parent;
+        AdminStudentsPage parentStudent;
         Student dopStudent;
         List<Circle> circles = App.db.Circles.ToList();
         List<Circle> trueCircles = new List<Circle>();
+
+        bool isTeacher = false;
+        AdminTeachersPage parentTeacher;
+        Teacher dopTeacher;
         public AdminAllProfilePage(Student student, AdminStudentsPage adminStudentsPage, bool isAdd)
         {
             InitializeComponent();
             this.isAdd = isAdd;
-            parent = adminStudentsPage;
+            parentStudent = adminStudentsPage;
 
             dopStudent = student;
 
@@ -63,7 +67,7 @@ namespace SchoolActivities
             InitializeComponent();
 
             this.isAdd = isAdd;
-            parent = adminStudentsPage;
+            parentStudent = adminStudentsPage;
 
             addButton.Visibility = Visibility.Visible;
             saveButton.Visibility = Visibility.Hidden;
@@ -77,88 +81,226 @@ namespace SchoolActivities
             circleComboBox.ItemsSource = circles;
         }
 
+        public AdminAllProfilePage(AdminTeachersPage parent, Teacher teacher, bool isAdd)
+        {
+            InitializeComponent();
+            isTeacher = true;
+            parentTeacher = parent;
+            dopTeacher = teacher;
+            this.isAdd = isAdd;
+
+            gridData.DataContext = teacher;
+            comboStackPanel.Visibility = Visibility.Hidden;
+            classTextBlock.Text = "Лет";
+
+            List<int> stagYears = new List<int>();
+            for (int i = 0; i < 99; i++)
+            {
+                stagYears.Add(i);
+            }
+            classComboBox.ItemsSource = stagYears;
+
+            phoneStackPanel.Visibility = Visibility.Visible;
+            statusStackPanel.Visibility = Visibility.Visible;
+            passwordStackPanel.Visibility = Visibility.Visible;
+
+            fioTextBox.Text = teacher.LastName + " " + teacher.FirstName + " " + teacher.Patronymic;
+            birthdayDatePicker.SelectedDate = teacher.Birthday;
+            classComboBox.SelectedIndex = Convert.ToInt32(teacher.Experience);
+            phoneTextBox.Text = teacher.PhoneNumber;
+            if (teacher.AdministratorStatus == true)
+            {
+                statusCheckBox.IsChecked = true;
+            }
+            else
+            {
+                statusCheckBox.IsChecked = false;
+            }
+            passwordTextBox.Text = teacher.Password;
+
+
+        }
+        public AdminAllProfilePage(AdminTeachersPage parent, bool isAdd)
+        {
+            InitializeComponent();
+            isTeacher = true;
+            this.isAdd = isAdd;
+            parentTeacher = parent;
+
+            comboStackPanel.Visibility = Visibility.Hidden;
+            classTextBlock.Text = "Лет";
+
+            List<int> stagYears = new List<int>();
+            for (int i = 0; i < 99; i++)
+            {
+                stagYears.Add(i);
+            }
+            classComboBox.ItemsSource = stagYears;
+
+            phoneStackPanel.Visibility = Visibility.Visible;
+            statusStackPanel.Visibility = Visibility.Visible;
+            passwordStackPanel.Visibility = Visibility.Visible;
+
+            classComboBox.SelectedIndex = 0;
+        }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (isAdd)
+            if (isTeacher)
             {
-                if (fioTextBox.Text != "" && birthdayDatePicker.SelectedDate != null && classComboBox.SelectedItem != null)
+                if (isAdd)
                 {
-                    Student student = new Student();
-                    string[] fioMas = fioTextBox.Text.Split(' ');
-
-                    if (fioMas.Length < 3)
+                    if (birthdayDatePicker != null && phoneTextBox.Text != "" && passwordTextBox.Text != "")
                     {
-                        errorLogIn.Text = "Введите ФИО полностью. С пробелами!";
-                        errorLogIn.Visibility = Visibility.Visible;
+                        Teacher teacher = new Teacher();
+                        string[] fioMas = fioTextBox.Text.Split(' ');
+
+                        if (fioMas.Length < 3)
+                        {
+                            errorLogIn.Text = "Введите ФИО полностью. С пробелами!";
+                            errorLogIn.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            teacher.Id = App.db.Teachers.ToList().Last().Id + 1;
+                            teacher.FirstName = fioMas[1];
+                            teacher.LastName = fioMas[0];
+                            teacher.Patronymic = fioMas[2];
+                            teacher.Birthday = birthdayDatePicker.SelectedDate;
+                            teacher.PhoneNumber = phoneTextBox.Text;
+                            teacher.Experience = classComboBox.SelectedIndex;
+                            teacher.AdministratorStatus = statusCheckBox.IsChecked;
+                            teacher.Password = passwordTextBox.Text;
+
+                            App.db.Teachers.Add(teacher);
+                            App.db.SaveChanges();
+
+                            parentTeacher.UpdateListTeachers();
+                            NavigationService.GoBack();
+                        }
                     }
                     else
                     {
-                        student.Id = App.db.Students.ToList().Last().Id + 1;
-                        student.LastName = fioMas[0];
-                        student.FirstName = fioMas[1];
-                        student.Patronymic = fioMas[2];
-                        student.Birthday = birthdayDatePicker.SelectedDate;
-                        student.ClassGroup = classComboBox.SelectedItem.ToString();
-
-                        foreach (var item in circles)
-                        {
-                            if (item.Selected == true)
-                            {
-                                trueCircles.Add(item);
-                            }
-                        }
-                        student.Circles = trueCircles;
-
-                        App.db.Students.Add(student);
-                        App.db.SaveChanges();
-
-                        parent.UpdateListCircles();
-                        NavigationService.GoBack();
+                        errorLogIn.Visibility = Visibility.Visible;
                     }
                 }
                 else
                 {
-                    errorLogIn.Visibility = Visibility.Visible;
+                    if (birthdayDatePicker.SelectedDate != null &&phoneTextBox.Text != "" && passwordTextBox.Text != "")
+                    {
+                        Teacher teacher = App.db.Teachers.Where(t => t.Id == dopTeacher.Id).FirstOrDefault();
+                        string[] fioMas = fioTextBox.Text.Split(' ');
+
+                        if (fioMas.Length < 3)
+                        {
+                            errorLogIn.Text = "Введите ФИО полностью. С пробелами!";
+                            errorLogIn.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            teacher.FirstName = fioMas[1];
+                            teacher.LastName = fioMas[0];
+                            teacher.Patronymic = fioMas[2];
+                            teacher.Birthday = birthdayDatePicker.SelectedDate;
+                            teacher.PhoneNumber = phoneTextBox.Text;
+                            teacher.Experience = classComboBox.SelectedIndex;
+                            teacher.AdministratorStatus = statusCheckBox.IsChecked;
+                            teacher.Password = passwordTextBox.Text;
+
+                            App.db.SaveChanges();
+
+                            parentTeacher.UpdateListTeachers();
+                            NavigationService.GoBack();
+                        }
+                    }
+                    else
+                    {
+                        errorLogIn.Visibility = Visibility.Visible;
+                    }
                 }
             }
             else
             {
-                if (fioTextBox.Text != "" && birthdayDatePicker.SelectedDate != null && classComboBox.SelectedItem != null)
+                if (isAdd)
                 {
-                    Student student = App.db.Students.Where(s => s.Id == dopStudent.Id).FirstOrDefault();
-                    string[] fioMas = fioTextBox.Text.Split(' ');
-
-                    if (fioMas.Length < 3)
+                    if (fioTextBox.Text != "" && birthdayDatePicker.SelectedDate != null && classComboBox.SelectedItem != null)
                     {
-                        errorLogIn.Text = "Введите ФИО полностью. С пробелами!";
-                        errorLogIn.Visibility = Visibility.Visible;
+                        Student student = new Student();
+                        string[] fioMas = fioTextBox.Text.Split(' ');
+
+                        if (fioMas.Length < 3)
+                        {
+                            errorLogIn.Text = "Введите ФИО полностью. С пробелами!";
+                            errorLogIn.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            student.Id = App.db.Students.ToList().Last().Id + 1;
+                            student.LastName = fioMas[0];
+                            student.FirstName = fioMas[1];
+                            student.Patronymic = fioMas[2];
+                            student.Birthday = birthdayDatePicker.SelectedDate;
+                            student.ClassGroup = classComboBox.SelectedItem.ToString();
+
+                            foreach (var item in circles)
+                            {
+                                if (item.Selected == true)
+                                {
+                                    trueCircles.Add(item);
+                                }
+                            }
+                            student.Circles = trueCircles;
+
+                            App.db.Students.Add(student);
+                            App.db.SaveChanges();
+
+                            parentStudent.UpdateListCircles();
+                            NavigationService.GoBack();
+                        }
                     }
                     else
                     {
-                        student.LastName = fioMas[0];
-                        student.FirstName = fioMas[1];
-                        student.Patronymic = fioMas[2];
-                        student.Birthday = birthdayDatePicker.SelectedDate;
-                        student.ClassGroup = classComboBox.SelectedItem.ToString();
-
-                        foreach (var item in circles)
-                        {
-                            if (item.Selected == true)
-                            {
-                                trueCircles.Add(item);
-                            }
-                        }
-                        student.Circles = trueCircles;
-
-                        App.db.SaveChanges();
-
-                        parent.UpdateListCircles();
-                        NavigationService.GoBack();
+                        errorLogIn.Visibility = Visibility.Visible;
                     }
                 }
                 else
                 {
-                    errorLogIn.Visibility = Visibility.Visible;
+                    if (fioTextBox.Text != "" && birthdayDatePicker.SelectedDate != null && classComboBox.SelectedItem != null)
+                    {
+                        Student student = App.db.Students.Where(s => s.Id == dopStudent.Id).FirstOrDefault();
+                        string[] fioMas = fioTextBox.Text.Split(' ');
+
+                        if (fioMas.Length < 3)
+                        {
+                            errorLogIn.Text = "Введите ФИО полностью. С пробелами!";
+                            errorLogIn.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            student.LastName = fioMas[0];
+                            student.FirstName = fioMas[1];
+                            student.Patronymic = fioMas[2];
+                            student.Birthday = birthdayDatePicker.SelectedDate;
+                            student.ClassGroup = classComboBox.SelectedItem.ToString();
+
+                            foreach (var item in circles)
+                            {
+                                if (item.Selected == true)
+                                {
+                                    trueCircles.Add(item);
+                                }
+                            }
+                            student.Circles = trueCircles;
+
+                            App.db.SaveChanges();
+
+                            parentStudent.UpdateListCircles();
+                            NavigationService.GoBack();
+                        }
+                    }
+                    else
+                    {
+                        errorLogIn.Visibility = Visibility.Visible;
+                    }
                 }
             }
         }

@@ -38,7 +38,7 @@ namespace SchoolActivities
             GenerateCalendary();
         }
 
-        void GenerateCalendary()
+        public void GenerateCalendary()
         {
             List<DayForCalendary> days = new List<DayForCalendary>();
 
@@ -80,7 +80,7 @@ namespace SchoolActivities
         private void CircleInDay_click(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(
-                new TeacherCircleDayPage(((sender as Border).DataContext) as CirclesForDay));
+                new AdminRaspisanieDayPage(((sender as Border).DataContext) as CirclesForDay));
         }
 
         private void ComboBoxChanged(object sender, SelectionChangedEventArgs e)
@@ -96,6 +96,7 @@ namespace SchoolActivities
         {
             AdminAddCircleWindow ac = new AdminAddCircleWindow((sender as Border).DataContext as DateTime?);
             ac.Show();
+            GenerateCalendary();
         }
     }
 }

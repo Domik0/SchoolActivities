@@ -11,11 +11,11 @@
             <TextBlock Text="Добавление кружка" HorizontalAlignment="Center" FontSize="20" FontWeight="Medium"/>
             <TextBlock x:Name="DateTitle" Text="{Binding ., StringFormat='{}Дата: {0:d}', ConverterCulture=ru}" FontSize="15" Margin="20, 10"/>
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Text="Время:" FontSize="15" Margin="10,0"/>
-                <TextBox x:Name="timeTitle" Text="{Binding ., StringFormat=t, ConverterCulture=ru}" FontSize="15" Height="25" Width="80"/>
+                <TextBlock Text="Время:" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
+                <TextBox x:Name="timeTitle" Text="{Binding ., StringFormat='H:mm'}" FontSize="15" Height="25" Width="80"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,10,10,20">
-                <TextBlock Text="Кружок:" FontSize="15" Margin="10,0"/>
+                <TextBlock Text="Кружок:" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
                 <ComboBox x:Name="predmetComboBox" Width="150" Height="40" SelectedIndex="0"
                           FontSize="20" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                     <ComboBox.ItemTemplate>
@@ -25,7 +25,8 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
-            <Border Width="150" Height="50" CornerRadius="15" BorderThickness="1" BorderBrush="Green" Background="Green">
+            <Border Width="150" Height="50" CornerRadius="15" MouseUp="SaveCircle"
+                    BorderThickness="1" BorderBrush="Green" Background="Green">
                 <TextBlock Text="Создать" Foreground="White" FontSize="20" FontWeight="Medium"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>

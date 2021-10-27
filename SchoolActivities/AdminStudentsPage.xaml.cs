@@ -27,11 +27,15 @@ namespace SchoolActivities
         {
             InitializeComponent();
 
-            foreach (var item in circles)
+            List<Circle> circles = new List<Circle>();
+            circles.Add(new Circle()
             {
-                circlesComboBox.Items.Add(item);
-            }
-            circlesComboBox.SelectedIndex = 0;
+                Title = "Все кружки",
+                Students = App.db.Students.ToList()
+            });
+            circles.AddRange(App.db.Circles.ToList());
+            circlesComboBox.ItemsSource = circles;
+
         }
 
         private void AddStudentImage_MouseUp(object sender, MouseButtonEventArgs e)
@@ -66,6 +70,24 @@ namespace SchoolActivities
 
             studentsInCirclesListView.ItemsSource = null;
             studentsInCirclesListView.ItemsSource = student.Students.ToList();
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var student = (circlesComboBox.SelectedItem as Circle).Students.ToList();
+
+            if (Search.Text.Length == 0)
+            {
+                studentsInCirclesListView.ItemsSource = student;
+            }
+            else
+            {
+
+                studentsInCirclesListView.ItemsSource = student.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower()) 
+                                                                           || c.FirstName.ToLower().Contains(Search.Text.ToLower())
+                                                                           || c.Patronymic.ToLower().Contains(Search.Text.ToLower())).ToList();
+
+            }
         }
     }
 }

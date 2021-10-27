@@ -81,14 +81,17 @@ namespace SchoolActivities
                             }
                             else if ((timeComboBox.SelectedItem as string) == "Неделя")
                             {
-                                if (day.Day == time.DateAndTime && day.Day > DateTime.Today.AddDays(-7) && day.Day < DateTime.Today.AddDays(7))
+                                if (day.Day != null)
                                 {
-                                    day.Circles.Add(new CirclesForDay() { cir = circle, dt = day.Day });
-                                }
-                                if (day.Day < DateTime.Today.AddDays(-7) || day.Day > DateTime.Today.AddDays(7))
-                                {
-                                    day.Day = null;
-                                }
+                                    if (day.Day.Value.Date == time.DateAndTime.Value.Date && day.Day > DateTime.Today.AddDays(-7) && day.Day < DateTime.Today.AddDays(7))
+                                    {
+                                        day.Circles.Add(new CirclesForDay() { cir = circle, dt = day.Day });
+                                    }
+                                    if (day.Day < DateTime.Today.AddDays(-7) || day.Day > DateTime.Today.AddDays(7))
+                                    {
+                                        day.Day = null;
+                                    }
+                                }  
                             }
                         }
                     }

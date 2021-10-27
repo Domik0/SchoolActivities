@@ -20,10 +20,12 @@ namespace SchoolActivities
     /// </summary>
     public partial class AdminAllProfilePage : Page
     {
+        AdminStudentsPage parent;
         Student dopStudent;
-        public AdminAllProfilePage(Student student)
+        public AdminAllProfilePage(Student student, AdminStudentsPage adminStudentsPage)
         {
             InitializeComponent();
+            parent = adminStudentsPage;
 
             dopStudent = student;
 
@@ -38,6 +40,7 @@ namespace SchoolActivities
                 classes.Add(i.ToString());
             }
             classComboBox.ItemsSource = classes;
+            classComboBox.SelectedItem = student.ClassGroup;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +55,11 @@ namespace SchoolActivities
                 student.Patronymic = fioMas[2];
                 student.Birthday = birthdayDatePicker.SelectedDate;
                 student.ClassGroup = classComboBox.SelectedItem.ToString();
+
+                App.db.SaveChanges();
+
+                parent.UpdateListCircles();
+                NavigationService.GoBack();
             }
         }
     }

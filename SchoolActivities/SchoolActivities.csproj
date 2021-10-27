@@ -101,8 +101,8 @@
     <Compile Include="AdminMainPage.xaml.cs">
       <DependentUpon>AdminMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AdminStatistikPage.xaml.cs">
-      <DependentUpon>AdminStatistikPage.xaml</DependentUpon>
+    <Compile Include="AdminRaspisaniePage.xaml.cs">
+      <DependentUpon>AdminRaspisaniePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AdminStudentsPage.xaml.cs">
       <DependentUpon>AdminStudentsPage.xaml</DependentUpon>
@@ -172,7 +172,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AdminStatistikPage.xaml">
+    <Page Include="AdminRaspisaniePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,6 +275,8 @@
     <Resource Include="Images\IconPhone.png" />
     <Resource Include="Images\IconSearch.png" />
     <Resource Include="Images\jackdaw.png" />
+    <Resource Include="Images\studentClass.png" />
+    <Resource Include="Images\rasp.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

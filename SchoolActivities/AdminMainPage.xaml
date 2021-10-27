@@ -69,10 +69,20 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            <Button x:Name="raspisanieButton" Grid.Row="5" Height="50" Click="RaspisanieButton_Click" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/rasp.png" Margin="20,0"/>
+                            <TextBlock Text="Расписание" Foreground="#fff" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-            <TextBlock Grid.Row="4" Grid.RowSpan="2" Text="Личное" Foreground="#fff" VerticalAlignment="Center" FontSize="16" Margin="20,0,0,20" FontWeight="DemiBold"/>
-            <Line X1="20" X2="280" Grid.Row="4" Grid.RowSpan="2" Stroke="#fff" VerticalAlignment="Center"/>
-            <Button Grid.Row="5" Height="50" Cursor="Hand">
+            <TextBlock Grid.Row="5" Grid.RowSpan="2" Text="Личное" Foreground="#fff" VerticalAlignment="Center" FontSize="16" Margin="20,0,0,20" FontWeight="DemiBold"/>
+            <Line X1="20" X2="280" Grid.Row="5" Grid.RowSpan="2" Stroke="#fff" VerticalAlignment="Center"/>
+            <Button Grid.Row="6" Height="50" Cursor="Hand">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal">

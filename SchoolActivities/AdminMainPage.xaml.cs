@@ -41,7 +41,7 @@ namespace SchoolActivities
 
         private void StatistikButton_Click(object sender, RoutedEventArgs e)
         {
-            frameNavigation.Content = new AdminStatistikPage();
+            frameNavigation.Content = new FirstAdminPage();
         }
 
         private void CirclesButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +52,12 @@ namespace SchoolActivities
         private void StudentsButton_Click(object sender, RoutedEventArgs e)
         {
             frameNavigation.Content = new AdminStudentsPage();
+        }
+
+        private void RaspisanieButton_Click(object sender, RoutedEventArgs e)
+        {
+            frameNavigation.Content = new AdminRaspisaniePage();
+
         }
     }
 }

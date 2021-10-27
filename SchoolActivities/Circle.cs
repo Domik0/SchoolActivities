@@ -25,7 +25,8 @@ namespace SchoolActivities
         public Nullable<int> TeacherId { get; set; }
         public string Title { get; set; }
         public string Cabinet { get; set; }
-    
+        public bool Selected { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeTable> TimeTable { get; set; }
         public virtual Teacher Teacher { get; set; }

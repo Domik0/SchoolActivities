@@ -32,6 +32,11 @@ namespace SchoolActivities
             InitializeComponent();
             Loaded += FirstAdminPage_Loaded;
             pieChart.DataContext = this;
+
+            countStudentsInCirclesTextBlock.Text = App.db.Students.Count().ToString();
+            countCirclesTextBlock.Text = App.db.Circles.Count().ToString();
+            countTeacherTextBlock.Text = App.db.Teachers.Count().ToString();
+            countCabinetsTextBlock.Text = App.db.Circles.Select(c => c.Cabinet).Count().ToString();
         }
 
         private void FirstAdminPage_Loaded(object sender, RoutedEventArgs e)

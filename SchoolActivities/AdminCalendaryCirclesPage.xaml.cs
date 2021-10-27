@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +16,13 @@ using System.Windows.Shapes;
 namespace SchoolActivities
 {
     /// <summary>
-    /// Interaction logic for AdminRaspisaniePage.xaml
+    /// Interaction logic for AdminCalendaryCirclesPage.xaml
     /// </summary>
-    public partial class AdminRaspisaniePage : Page
+    public partial class AdminCalendaryCirclesPage : Page
     {
         private Teacher teacher;
 
-        public AdminRaspisaniePage(Teacher teacher)
+        public AdminCalendaryCirclesPage()
         {
             InitializeComponent();
             NamePrepod.DataContext = teacher;
@@ -53,8 +52,9 @@ namespace SchoolActivities
                 days.Add(new DayForCalendary(new DateTime(DateTime.Today.Year, DateTime.Today.Month, i)));
             }
 
-            
-            foreach (Circle circle in App.Circles)
+
+
+            foreach (Circle circle in App.db.Circles)
             {
                 if (circle == predmetComboBox.SelectedItem as Circle || (predmetComboBox.SelectedItem as Circle)?.Title == "Все кружки")
                 {
@@ -92,10 +92,5 @@ namespace SchoolActivities
             }
         }
 
-        private void AddCircle(object sender, MouseButtonEventArgs e)
-        {
-            AdminAddCircleWindow ac = new AdminAddCircleWindow((sender as Border).DataContext as DateTime?);
-            ac.Show();
-        }
     }
 }

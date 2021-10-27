@@ -10,12 +10,12 @@
 
     <Grid Background="#fff">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
-            <ColumnDefinition Width="180"/>
-            <ColumnDefinition Width="180"/>
-            <ColumnDefinition Width="180"/>
-            <ColumnDefinition Width="180"/>
-            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="210"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -36,11 +36,11 @@
         <Border Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="3" CornerRadius="10" Margin="5" HorizontalAlignment="Center" Width="300" >
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,0,5,0">
                 <TextBox x:Name="Search" BorderThickness="0" Width="245" Height="30" TextChanged="Search_TextChanged" FontSize="17" BorderBrush="Transparent" VerticalAlignment="Bottom"/>
-                <Image Source="Images/IconSearch.png" Width="30"  Margin="5,1,0,1"/>
+                <Image Source="Images/IconSearch.png" Width="30"  Margin="5,1,0,1" Cursor="Hand"/>
             </StackPanel>
         </Border>
 
-        <Image Name="addStudentImage" Source="Images/plusCircle.png" Width="50" Grid.Column="4" MouseUp="AddStudentImage_MouseUp"/>
+        <Image Name="addStudentImage" Source="Images/plusCircle.png" Width="50" Grid.Column="4" MouseUp="AddStudentImage_MouseUp" Cursor="Hand"/>
 
         <TextBlock Text="ФАМИЛИЯ" Grid.Row="1" Grid.Column="0" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
         <TextBlock Text="ИМЯ" Grid.Row="1" Grid.Column="1" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
@@ -59,11 +59,11 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="210"/>
+                            <ColumnDefinition Width="210"/>
+                            <ColumnDefinition Width="210"/>
+                            <ColumnDefinition Width="210"/>
+                            <ColumnDefinition Width="210"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>

@@ -124,6 +124,9 @@
     <Compile Include="AdminMainPage.xaml.cs">
       <DependentUpon>AdminMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminProdilePage.xaml.cs">
+      <DependentUpon>AdminProdilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminRaspisanieDayPage.xaml.cs">
       <DependentUpon>AdminRaspisanieDayPage.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminProdilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

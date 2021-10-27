@@ -22,6 +22,7 @@ namespace SchoolActivities
     {
         private Circle circle;
         private TimeTable timeTable;
+        private List<Student> reportList = new List<Student>();
 
         public TeacherCircleDayPage(CirclesForDay cfd)
         {
@@ -32,10 +33,24 @@ namespace SchoolActivities
             CircleTimeInfo.DataContext = timeTable;
             studentsInCircleListView.ItemsSource = timeTable.Students;
         }
-        
+
         private void GoBack_Click(object sender, MouseButtonEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void StudentInLesson(object sender, MouseButtonEventArgs e)
+        {
+            if (((sender as Border).Child as Image).Visibility == Visibility.Hidden)
+            {
+                ((sender as Border).Child as Image).Visibility = Visibility.Visible;
+                reportList.Add((sender as Border).DataContext as Student);
+            }
+            else
+            {
+                ((sender as Border).Child as Image).Visibility = Visibility.Hidden;
+
+            }
         }
     }
 }

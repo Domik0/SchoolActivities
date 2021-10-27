@@ -86,9 +86,11 @@
                                 <TextBlock Text="{Binding FirstName}" Grid.Column="1"/>
                                 <TextBlock Text="{Binding Patronymic}" Grid.Column="2"/>
 
-                                <Border Grid.Column="3" BorderBrush="Black" Width="50" Height="50" Padding="5"
-                                        CornerRadius="15" BorderThickness="1" HorizontalAlignment="Center">
-                                    <Image Source="Images/jackdaw.png"/>
+
+
+                                <Border Grid.Column="3" BorderBrush="Black" Width="50" Height="50" Padding="5" MouseUp="StudentInLesson"
+                                        CornerRadius="15" BorderThickness="1" HorizontalAlignment="Center" DataContext="{Binding .}">
+                                    <Image Source="Images/jackdaw.png" Visibility="Hidden"/>
                                     <Border.Style>
                                         <Style TargetType="{x:Type Border}">
                                             <Style.Triggers>

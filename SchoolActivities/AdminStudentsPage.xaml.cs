@@ -21,6 +21,7 @@ namespace SchoolActivities
     /// </summary>
     public partial class AdminStudentsPage : Page
     {
+        bool isAdd;
         List<Circle> circles = App.db.Circles.Include(r => r.Students).ToList();
         public AdminStudentsPage()
         {
@@ -35,7 +36,8 @@ namespace SchoolActivities
 
         private void AddStudentImage_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            
+            isAdd = true;
+            AdminMainPage.frame.Content = new AdminAllProfilePage(this, isAdd);
         }
 
         private void CirclesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -45,8 +47,9 @@ namespace SchoolActivities
 
         private void UpdateStudent_Click(object sender, RoutedEventArgs e)
         {
+            isAdd = false;
             Student student = studentsInCirclesListView.SelectedItem as Student;
-            AdminMainPage.frame.Content = new AdminAllProfilePage(student, this);
+            AdminMainPage.frame.Content = new AdminAllProfilePage(student, this, isAdd);
         }
 
         private void DeleteStudent_Click(object sender, RoutedEventArgs e)

@@ -38,6 +38,24 @@
             </StackPanel>
         </Border>
 
+        <Border Grid.Column="0" VerticalAlignment="Bottom" Margin="50"
+                Width="200" Height="50" CornerRadius="15" MouseUp="Border_MouseUp">
+            <TextBlock Text="Сохранить" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       FontSize="25" FontWeight="Medium" Foreground="White"/>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="Green"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+        
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>

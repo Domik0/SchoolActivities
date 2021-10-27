@@ -21,22 +21,22 @@ namespace SchoolActivities
     public partial class AdminTeachersPage : Page
     {
         List<Teacher> teachers = App.db.Teachers.ToList();
-
+        bool isAdd;
         public AdminTeachersPage()
         {
             InitializeComponent();
-            teacher.ItemsSource = teachers;
+            teacherList.ItemsSource = teachers;
         }
 
         private void Search_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (Search.Text.Length == 0)
             {
-                teacher.ItemsSource = teachers;
+                teacherList.ItemsSource = teachers;
             }
             else
             {
-                teacher.ItemsSource = teachers.Where(c => c.LastName.ToString().StartsWith(Search.Text)).ToList();
+                teacherList.ItemsSource = teachers.Where(c => c.LastName.ToString().StartsWith(Search.Text)).ToList();
             }
         }
 
@@ -44,34 +44,41 @@ namespace SchoolActivities
         {
             if (Search.Text.Length == 0)
             {
-                teacher.ItemsSource = teachers;
+                teacherList.ItemsSource = teachers;
             }
             else
             {
                 //teacher.ItemsSource = teachers.Where(c => c.LastName.ToString().StartsWith(Search.Text)).ToList();
-                teacher.ItemsSource = teachers.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower())).ToList();
+                teacherList.ItemsSource = teachers.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower())).ToList();
 
             }
         }
 
-        private void fire_MouseDown(object sender, MouseButtonEventArgs e)
+        private void AddTeacher_Click(object sender, RoutedEventArgs e)
         {
-
+            isAdd = true;
+            AdminMainPage.frame.Content = new AdminAllProfilePage(this, isAdd);
         }
 
-        private void change_MouseDown(object sender, MouseButtonEventArgs e)
+        private void DeleteButtom_Click(object sender, RoutedEventArgs e)
         {
+            var item = ((Button)sender).DataContext as Teacher;
+            App.db.Teachers.Remove(item);
+            App.db.SaveChanges();
 
+            UpdateListTeachers();
         }
 
-        private void save_MouseDown(object sender, MouseButtonEventArgs e)
+        private void UpdateButtom_Click(object sender, RoutedEventArgs e)
         {
-
+            isAdd = false;
+            var item = ((Button)sender).DataContext as Teacher;
+            AdminMainPage.frame.Content = new AdminAllProfilePage(this, item, isAdd);
         }
-
-        private void addTeacher_Click(object sender, RoutedEventArgs e)
+        public void UpdateListTeachers()
         {
-
+            teacherList.ItemsSource = null;
+            teacherList.ItemsSource = App.db.Teachers.ToList();
         }
     }
 }

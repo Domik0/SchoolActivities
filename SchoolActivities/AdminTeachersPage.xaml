@@ -20,21 +20,21 @@
                     <Image Source="Images/IconSearch.png"  Margin="5,1,0,1"/>
                 </StackPanel>
             </Border>
-            <Button x:Name="addTeacher" HorizontalAlignment="Right" Click="addTeacher_Click" Background="White" BorderBrush="White">
+            <Button x:Name="addTeacher" HorizontalAlignment="Right" Click="AddTeacher_Click" Background="White" BorderBrush="White">
                 <Image Source="Images/addIcon.png" Margin="0"/>
             </Button>
         </DockPanel>
 
 
-        <ListView x:Name="teacher" Grid.Row="1" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <ListView x:Name="teacherList" Grid.Row="1" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Name="uniformGrid" Columns="3" Margin="50" HorizontalAlignment="Center"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border CornerRadius="10" BorderThickness="2" BorderBrush="Black" Width="250" Height="350" Margin="5,0,5,0">
+            <ListView.Resources>
+                <ControlTemplate x:Key="listViewItemCalendarys" TargetType="ListViewItem">
+                    <Border CornerRadius="10" BorderThickness="2" BorderBrush="Black" Width="300" Height="400" Margin="5">
                         <Border.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="White"/>
@@ -57,9 +57,9 @@
                             <Image Source="Images/IconPeople.png" Grid.Row="0" Grid.RowSpan="2"/>
 
                             <DockPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBox Text="{Binding LastName}" Margin="5" Background="Transparent" BorderThickness="0"/>
-                                <TextBox Text="{Binding FirstName}" Margin="5" Background="Transparent" BorderThickness="0"/>
-                                <TextBox Text="{Binding Patronymic}" Margin="5" Background="Transparent" BorderThickness="0"/>
+                                <TextBox Text="{Binding LastName}" Margin="5" Background="Transparent" BorderThickness="0" FontSize="15" IsReadOnly="True"/>
+                                <TextBox Text="{Binding FirstName}" Margin="5" Background="Transparent" BorderThickness="0" FontSize="15" IsReadOnly="True"/>
+                                <TextBox Text="{Binding Patronymic}" Margin="5" Background="Transparent" BorderThickness="0" FontSize="15" IsReadOnly="True"/>
                             </DockPanel>
 
                             <Grid Grid.Row="3" Grid.RowSpan="2">
@@ -73,42 +73,54 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
                                     <Image Source="Images/IconBirthday.png" Width="50" Height="50" Margin="0,5,0,5" VerticalAlignment="Center"/>
-                                    <TextBox Text="{Binding Birthday ,  StringFormat='dd.MM.yyyy'}" Margin="5" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"/>
+                                    <TextBox Text="{Binding Birthday ,  StringFormat='dd.MM.yyyy'}" Margin="5" IsReadOnly="True" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                                     <Image Source="Images/IconExperience.png" Width="25" Height="25" Margin="7,5,5,5" VerticalAlignment="Center"/>
-                                    <TextBox Text="{Binding Experience}"  Margin="5" Background="Transparent" BorderThickness="0" VerticalAlignment="Center"/>
+                                    <TextBox Text="{Binding Experience, StringFormat='{}{0} лет'}" IsReadOnly="True" Margin="5" Background="Transparent" BorderThickness="0" VerticalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
                                     <Image Source="Images/IconPhone.png" Width="25" Height="25" Margin="13,5,0,5" VerticalAlignment="Center"/>
-                                    <TextBox Text="{Binding PhoneNumber}" Margin="5" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" />
+                                    <TextBox Text="{Binding PhoneNumber}" IsReadOnly="True" Margin="5" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                                     <Image Source="Images/IconPassword.png" Width="29" Height="29" Margin="5" VerticalAlignment="Center"/>
-                                    <TextBox Text="{Binding Password}" Margin="4,5,5,5" Background="Transparent" BorderThickness="0" VerticalAlignment="Center"/>
+                                    <TextBox Text="{Binding Password}" IsReadOnly="True" Margin="4,5,5,5" Background="Transparent" BorderThickness="0" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Grid>
 
                             <DockPanel Grid.Row="5" HorizontalAlignment="Center">
                                 <TextBlock Text="Статус администратора" Margin="5"/>
-                                <CheckBox  Margin="5"/>
+                                <CheckBox Name="statusCheck" Margin="5" IsChecked="{Binding AdministratorStatus}" IsEnabled="False"/>
                             </DockPanel>
 
-                            <Border x:Name="fire" CornerRadius="15" Background="Red" Grid.Row="6" Margin="5" MouseDown="fire_MouseDown" HorizontalAlignment="Center" Width="150">
-                                <TextBlock Text="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <Border x:Name="change" CornerRadius="15" Background="Blue" MouseDown="change_MouseDown" Grid.Row="7" Margin="5" Width="150">
-                                <TextBlock Text="Изменить" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <Border x:Name="save" CornerRadius="15"  Background="Green" MouseDown="save_MouseDown" Grid.Row="8" Margin="5" Width="150">
-                                <TextBlock Text="Сохранить" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
+                            <Button x:Name="deleteButtom" Grid.Row="6" Click="DeleteButtom_Click" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border x:Name="fire" CornerRadius="15" Background="Red"  Margin="5" HorizontalAlignment="Center" Width="150">
+                                            <TextBlock Text="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button x:Name="updateButtom" Grid.Row="7" Click="UpdateButtom_Click" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border x:Name="change" CornerRadius="15" Background="Blue" Margin="5" Width="150">
+                                            <TextBlock Text="Изменить" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                         </Grid>
                     </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+                </ControlTemplate>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template" Value="{StaticResource listViewItemCalendarys}"/>
+                </Style>
+            </ListView.Resources>
         </ListView>
     </Grid>
 </Page>

@@ -76,7 +76,7 @@
               Grid.Column="1" Grid.RowSpan="2">
 
             <lvc:PieChart Series="{Binding SeriesViews}"
-                          Name="pieChart">
+                          Name="pieChart" Width="500">
             </lvc:PieChart>
             
         </Grid>

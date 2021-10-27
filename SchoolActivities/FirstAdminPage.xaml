@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SchoolActivities"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="980"
       Title="FirstAdminPage">
@@ -70,7 +71,15 @@
             </Border>
         </Grid>
         <TextBlock Text="ДИАГРАММА ПО КОЛ-ВУ ДЕТЕЙ В КРУЖКАХ" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        
+
+        <Grid Grid.Row="0"
+              Grid.Column="1">
+
+            <lvc:PieChart Series="{Binding SeriesViews}"
+                          Name="pieChart">
+            </lvc:PieChart>
+            
+        </Grid>
         
     </Grid>
 </Page>

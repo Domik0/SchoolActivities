@@ -85,6 +85,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminAllProfilePage.xaml.cs">
+      <DependentUpon>AdminAllProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminCirclesInfoPage.xaml.cs">
       <DependentUpon>AdminCirclesInfoPage.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,9 @@
     <Compile Include="Teacher.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
+    <Compile Include="TeacherCircleDayPage.xaml.cs">
+      <DependentUpon>TeacherCircleDayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeacherMainPage.xaml.cs">
       <DependentUpon>TeacherMainPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +158,10 @@
     <Compile Include="TimeTable.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
+    <Page Include="AdminAllProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminCirclesInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +203,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeacherCircleDayPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -262,6 +276,7 @@
     <Resource Include="Images\IconPeople.png" />
     <Resource Include="Images\IconPhone.png" />
     <Resource Include="Images\IconSearch.png" />
+    <Resource Include="Images\jackdaw.png" />
     <Resource Include="Images\teacherPhoto.png" />
     <Resource Include="Images\circlePhoto.png" />
     <Resource Include="Images\strelkaGoBack.png" />

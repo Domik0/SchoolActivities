@@ -22,15 +22,15 @@ namespace SchoolActivities
     public partial class AdminStudentsPage : Page
     {
         List<Circle> circles = App.db.Circles.Include(r => r.Students).ToList();
-        List<Student> students = App.db.Students.ToList();
         public AdminStudentsPage()
         {
             InitializeComponent();
-            
+
             foreach (var item in circles)
             {
                 circlesComboBox.Items.Add(item);
             }
+            circlesComboBox.SelectedIndex = 0;
         }
 
         private void AddStudentImage_MouseUp(object sender, MouseButtonEventArgs e)
@@ -49,14 +49,14 @@ namespace SchoolActivities
         private void UpdateStudent_Click(object sender, RoutedEventArgs e)
         {
             Student student = studentsInCirclesListView.SelectedItem as Student;
-
+            AdminMainPage.frame.Content = new AdminAllProfilePage(student);
         }
 
         private void DeleteStudent_Click(object sender, RoutedEventArgs e)
         {
             Student student = studentsInCirclesListView.SelectedItem as Student;
             App.db.Students.Remove(student);
-            App.db.SaveChanges();
+            //App.db.SaveChanges();
         }
     }
 }

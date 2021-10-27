@@ -70,10 +70,10 @@
                 </Grid>
             </Border>
         </Grid>
-        <TextBlock Text="ДИАГРАММА ПО КОЛ-ВУ ДЕТЕЙ В КРУЖКАХ" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="ДИАГРАММА ПО КОЛ-ВУ ДЕТЕЙ В КРУЖКАХ" Grid.Row="2" Grid.Column="1" Margin="0,0,0,60" FontWeight="Medium" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 
         <Grid Grid.Row="0"
-              Grid.Column="1">
+              Grid.Column="1" Grid.RowSpan="2">
 
             <lvc:PieChart Series="{Binding SeriesViews}"
                           Name="pieChart">

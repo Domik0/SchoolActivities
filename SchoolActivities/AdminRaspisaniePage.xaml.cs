@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SchoolActivities
 {
     /// <summary>
-    /// Interaction logic for AdminStatistikPage.xaml
+    /// Interaction logic for AdminRaspisaniePage.xaml
     /// </summary>
-    public partial class AdminStatistikPage : Page
+    public partial class AdminRaspisaniePage : Page
     {
-        public AdminStatistikPage()
+        public AdminRaspisaniePage()
         {
             InitializeComponent();
         }

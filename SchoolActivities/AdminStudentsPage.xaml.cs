@@ -40,16 +40,13 @@ namespace SchoolActivities
 
         private void CirclesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var student = circlesComboBox.SelectedItem as Circle;
-
-            studentsInCirclesListView.ItemsSource = null;
-            studentsInCirclesListView.ItemsSource = student.Students.ToList();
+            UpdateListCircles();
         }
 
         private void UpdateStudent_Click(object sender, RoutedEventArgs e)
         {
             Student student = studentsInCirclesListView.SelectedItem as Student;
-            AdminMainPage.frame.Content = new AdminAllProfilePage(student);
+            AdminMainPage.frame.Content = new AdminAllProfilePage(student, this);
         }
 
         private void DeleteStudent_Click(object sender, RoutedEventArgs e)
@@ -57,6 +54,13 @@ namespace SchoolActivities
             Student student = studentsInCirclesListView.SelectedItem as Student;
             App.db.Students.Remove(student);
             //App.db.SaveChanges();
+        }
+        public void UpdateListCircles()
+        {
+            var student = circlesComboBox.SelectedItem as Circle;
+
+            studentsInCirclesListView.ItemsSource = null;
+            studentsInCirclesListView.ItemsSource = student.Students.ToList();
         }
     }
 }

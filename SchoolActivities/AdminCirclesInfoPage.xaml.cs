@@ -66,7 +66,7 @@ namespace SchoolActivities
                         Circle dopCircle = kabinetComboBox.SelectedItem as Circle;
 
                         Circle circle = new Circle()
-        {
+                        {
                             Id = App.db.Circles.ToList().Last().Id + 1,
                             Title = titleCircleTextBox.Text,
                             Teacher = teacher,
@@ -76,8 +76,8 @@ namespace SchoolActivities
                         App.db.SaveChanges();
 
                         parent.UpdateListCircles();
-            NavigationService.GoBack();
-        }
+                        NavigationService.GoBack();
+                    }
                     else
                     {
                         errorTextBlock.Visibility = Visibility.Visible;
@@ -91,9 +91,9 @@ namespace SchoolActivities
                 }
             }
             else
-        {
-            Teacher teacher = teachersComboBox.SelectedItem as Teacher;
-            Circle circle = App.db.Circles.Where(i => i.Id == doCircke.Id).FirstOrDefault();
+            {
+                Teacher teacher = teachersComboBox.SelectedItem as Teacher;
+                Circle circle = App.db.Circles.Where(i => i.Id == doCircke.Id).FirstOrDefault();
 
                 circle.Teacher.LastName = teacher.LastName;
                 circle.Teacher.FirstName = teacher.FirstName;
@@ -104,9 +104,9 @@ namespace SchoolActivities
 
                 App.db.SaveChanges();
 
-            parent.UpdateListCircles();
-            NavigationService.GoBack();
-        }
+                parent.UpdateListCircles();
+                NavigationService.GoBack();
+            }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

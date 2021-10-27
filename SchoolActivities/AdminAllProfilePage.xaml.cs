@@ -31,12 +31,18 @@ namespace SchoolActivities
             fioTextBox.Text = student.LastName + " " + student.FirstName + " " + student.Patronymic;
 
             birthdayDatePicker.SelectedDate = student.Birthday;
-            classTextBox.Text = student.ClassGroup + " Класс";
+
+            List<string> classes = new List<string>();
+            for (int i = 1; i < 12; i++)
+            {
+                classes.Add(i.ToString());
+            }
+            classComboBox.ItemsSource = classes;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (fioTextBox.Text != "" && birthdayDatePicker.SelectedDate != null && classTextBox.Text != "")
+            if (fioTextBox.Text != "" && birthdayDatePicker.SelectedDate != null && classComboBox.SelectedItem != null)
             {
                 Student student = App.db.Students.Where(s => s.Id == dopStudent.Id).FirstOrDefault();
                 string[] fioMas = fioTextBox.Text.Split(' ');
@@ -45,7 +51,7 @@ namespace SchoolActivities
                 student.FirstName = fioMas[1];
                 student.Patronymic = fioMas[2];
                 student.Birthday = birthdayDatePicker.SelectedDate;
-                student.ClassGroup = classTextBox.Text;
+                student.ClassGroup = classComboBox.SelectedItem.ToString();
             }
         }
     }

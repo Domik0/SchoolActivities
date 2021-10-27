@@ -102,7 +102,7 @@ namespace SchoolActivities
                 Circle dopCircle = kabinetComboBox.SelectedItem as Circle;
                 circle.Cabinet = dopCircle.Cabinet;
 
-                //App.db.SaveChanges();
+                App.db.SaveChanges();
 
                 parent.UpdateListCircles();
                 NavigationService.GoBack();

@@ -30,7 +30,7 @@ namespace SchoolActivities
         private void TeacherButton_Click(object sender, RoutedEventArgs e)
         {
             //Открывает страничку со всеми Учителями
-            frameNavigation.Content = new TeachersProfilePage();
+            frameNavigation.Content = new AdminTeachersPage();
         }
 
         private void AdminTextBlock_MouseUp(object sender, MouseButtonEventArgs e)

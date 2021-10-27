@@ -26,10 +26,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Админ" Foreground="#fff" FontSize="45" FontWeight="Bold" Margin="20,10" MouseUp="AdminTextBlock_MouseUp"/>
+            <TextBlock Text="Админ" Foreground="#fff" FontSize="45" FontWeight="Bold" Margin="20,10" MouseUp="AdminTextBlock_MouseUp" Cursor="Hand"/>
             <TextBlock Grid.Row="0" Grid.RowSpan="2" Text="Навигация" Foreground="#fff" VerticalAlignment="Center" FontSize="16" Margin="20,0,0,20" FontWeight="DemiBold"/>
             <Line X1="20" X2="280" Grid.Row="0" Grid.RowSpan="2" Stroke="#fff" VerticalAlignment="Center"/>
-            <Button x:Name="statistikButton" Grid.Row="1" Height="50" Click="StatistikButton_Click">
+            <Button x:Name="statistikButton" Grid.Row="1" Height="50" Click="StatistikButton_Click" Cursor="Hand">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal">
@@ -39,7 +39,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="teacherButton" Grid.Row="2" Height="50" Click="TeacherButton_Click">
+            <Button x:Name="teacherButton" Grid.Row="2" Height="50" Click="TeacherButton_Click" Cursor="Hand">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal">
@@ -49,7 +49,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="circlesButton" Grid.Row="3" Height="50" Click="CirclesButton_Click">
+            <Button x:Name="circlesButton" Grid.Row="3" Height="50" Click="CirclesButton_Click" Cursor="Hand">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal">
@@ -59,7 +59,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="studentsButton" Grid.Row="4" Height="50" Click="StudentsButton_Click">
+            <Button x:Name="studentsButton" Grid.Row="4" Height="50" Click="StudentsButton_Click" Cursor="Hand">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal">
@@ -72,7 +72,7 @@
 
             <TextBlock Grid.Row="4" Grid.RowSpan="2" Text="Личное" Foreground="#fff" VerticalAlignment="Center" FontSize="16" Margin="20,0,0,20" FontWeight="DemiBold"/>
             <Line X1="20" X2="280" Grid.Row="4" Grid.RowSpan="2" Stroke="#fff" VerticalAlignment="Center"/>
-            <Button Grid.Row="5" Height="50">
+            <Button Grid.Row="5" Height="50" Cursor="Hand">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal">

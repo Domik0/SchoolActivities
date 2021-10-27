@@ -22,16 +22,17 @@ namespace SchoolActivities
     {
         private Circle circle;
         private TimeTable timeTable;
-        private List<Student> reportList = new List<Student>();
+        private List<Student> reportList;
 
         public TeacherCircleDayPage(CirclesForDay cfd)
         {
             this.circle = cfd.cir;
             this.timeTable = circle.TimeTable.First(t => t.DateAndTime == cfd.dt);
+            reportList = timeTable.Students.ToList();
             InitializeComponent();
             BorderInfoCircle.DataContext = circle;
             CircleTimeInfo.DataContext = timeTable;
-            studentsInCircleListView.ItemsSource = timeTable.Students;
+            studentsInCircleListView.ItemsSource = circle.Students;
         }
 
         private void GoBack_Click(object sender, MouseButtonEventArgs e)
@@ -49,7 +50,23 @@ namespace SchoolActivities
             else
             {
                 ((sender as Border).Child as Image).Visibility = Visibility.Hidden;
+                reportList.Remove((sender as Border).DataContext as Student);
+            }
+        }
 
+        private void Border_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            timeTable.Students = reportList;
+            App.db.SaveChanges();
+        }
+
+        private void FrameworkElement_OnInitialized(object sender, EventArgs e)
+        {
+            var student = (sender as Border).DataContext as Student;
+            var imageFlag = (sender as Border).Child as Image;
+            if (timeTable.Students.Count(t => t == student) > 0)
+            {
+                imageFlag.Visibility = Visibility.Visible;
             }
         }
     }

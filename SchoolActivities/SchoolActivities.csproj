@@ -276,6 +276,7 @@
     <Resource Include="Images\strelkaGoBack.png" />
     <Resource Include="Images\plusCircle.png" />
     <Resource Include="Images\uchenik.png" />
+    <Resource Include="Images\studentClass.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

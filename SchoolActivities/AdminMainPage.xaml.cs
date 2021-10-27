@@ -62,10 +62,15 @@ namespace SchoolActivities
             frameNavigation.Content = new AdminRaspisaniePage(teacher);
 
         }
-
+        
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
             frameNavigation.Content = new AdminProdilePage(teacher);
+        }
+        
+        private void GoHome(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

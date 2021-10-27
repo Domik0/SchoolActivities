@@ -33,7 +33,7 @@ namespace SchoolActivities
             {
                 Title = "Все кружки"
             });
-            circles.AddRange(this.teacher.Circles);
+            circles.AddRange(App.db.Circles);
             predmetComboBox.ItemsSource = circles;
             GenerateCalendary();
         }

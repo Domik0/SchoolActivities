@@ -85,7 +85,7 @@ namespace SchoolActivities
                                 {
                                     if (day.Day.Value.Date == time.DateAndTime.Value.Date && day.Day > DateTime.Today.AddDays(-7) && day.Day < DateTime.Today.AddDays(7))
                                     {
-                                        day.Circles.Add(new CirclesForDay() { cir = circle, dt = day.Day });
+                                        day.Circles.Add(new CirclesForDay() { cir = circle, dt = time.DateAndTime });
                                     }
                                     if (day.Day < DateTime.Today.AddDays(-7) || day.Day > DateTime.Today.AddDays(7))
                                     {
@@ -114,6 +114,11 @@ namespace SchoolActivities
                 Calendary.ItemsSource = null;
                 GenerateCalendary();
             }
+        }
+
+        private void GoHome(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

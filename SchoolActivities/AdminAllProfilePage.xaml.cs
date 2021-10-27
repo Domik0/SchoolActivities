@@ -23,8 +23,8 @@ namespace SchoolActivities
         bool isAdd;
         AdminStudentsPage parent;
         Student dopStudent;
-        List<CirclesInStudent> circles = new List<CirclesInStudent>();
-        List<Circle> isusCircles = new List<Circle>();
+        List<Circle> circles = App.db.Circles.ToList();
+        List<Circle> trueCircles = new List<Circle>();
         public AdminAllProfilePage(Student student, AdminStudentsPage adminStudentsPage, bool isAdd)
         {
             InitializeComponent();
@@ -46,20 +46,11 @@ namespace SchoolActivities
             classComboBox.ItemsSource = classes;
             classComboBox.SelectedItem = student.ClassGroup;
 
-
-            foreach (var stud in App.db.Circles.ToList())
-            {
-                circles.Add(new CirclesInStudent()
-                {
-                    Name = stud.Title,
-                    Selected = false
-                });
-            }
             foreach (var item in circles)
             {
                 foreach (var stud in student.Circles)
                 {
-                    if (item.Name == stud.Title)
+                    if (item.Title == stud.Title)
                     {
                         item.Selected = true;
                     }
@@ -83,6 +74,7 @@ namespace SchoolActivities
                 classes.Add(i.ToString());
             }
             classComboBox.ItemsSource = classes;
+            circleComboBox.ItemsSource = circles;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -107,6 +99,15 @@ namespace SchoolActivities
                         student.Patronymic = fioMas[2];
                         student.Birthday = birthdayDatePicker.SelectedDate;
                         student.ClassGroup = classComboBox.SelectedItem.ToString();
+
+                        foreach (var item in circles)
+                        {
+                            if (item.Selected == true)
+                            {
+                                trueCircles.Add(item);
+                            }
+                        }
+                        student.Circles = trueCircles;
 
                         App.db.Students.Add(student);
                         App.db.SaveChanges();
@@ -139,7 +140,15 @@ namespace SchoolActivities
                         student.Patronymic = fioMas[2];
                         student.Birthday = birthdayDatePicker.SelectedDate;
                         student.ClassGroup = classComboBox.SelectedItem.ToString();
-                        //student.Circles = circleComboBox.SelectedItems;
+
+                        foreach (var item in circles)
+                        {
+                            if (item.Selected == true)
+                            {
+                                trueCircles.Add(item);
+                            }
+                        }
+                        student.Circles = trueCircles;
 
                         App.db.SaveChanges();
 

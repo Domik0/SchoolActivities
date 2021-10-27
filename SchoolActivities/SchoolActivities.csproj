@@ -128,7 +128,6 @@
     <Compile Include="Circle.cs">
       <DependentUpon>SchoolActivity.tt</DependentUpon>
     </Compile>
-    <Compile Include="CirclesInStudent.cs" />
     <Compile Include="DayForCalendary.cs" />
     <Compile Include="FirstAdminPage.xaml.cs">
       <DependentUpon>FirstAdminPage.xaml</DependentUpon>

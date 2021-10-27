@@ -21,8 +21,11 @@ namespace SchoolActivities
     public partial class AdminMainPage : Page
     {
         public static Frame frame;
+        Teacher teacher;
+
         public AdminMainPage(Teacher teacher)
         {
+            this.teacher = teacher;
             InitializeComponent();
             frame = frameNavigation;
         }
@@ -56,7 +59,7 @@ namespace SchoolActivities
 
         private void RaspisanieButton_Click(object sender, RoutedEventArgs e)
         {
-            frameNavigation.Content = new AdminRaspisaniePage();
+            frameNavigation.Content = new AdminRaspisaniePage(teacher);
 
         }
     }

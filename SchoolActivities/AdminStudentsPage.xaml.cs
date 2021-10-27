@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
+using System.Collections.ObjectModel;
 
 namespace SchoolActivities
 {
@@ -22,19 +23,13 @@ namespace SchoolActivities
     public partial class AdminStudentsPage : Page
     {
         bool isAdd;
-        List<Circle> circles = App.db.Circles.Include(r => r.Students).ToList();
+        ObservableCollection<Circle> circles = new ObservableCollection<Circle>();
+        List<Student> students1 = new List<Student>();
         public AdminStudentsPage()
         {
             InitializeComponent();
-
-            List<Circle> circles = new List<Circle>();
-            circles.Add(new Circle()
-            {
-                Title = "Все кружки",
-                Students = App.db.Students.ToList()
-            });
-            circles.AddRange(App.db.Circles.ToList());
-            circlesComboBox.ItemsSource = circles;
+            UpdateListCircles();
+            PPS();
 
         }
 
@@ -66,10 +61,11 @@ namespace SchoolActivities
         }
         public void UpdateListCircles()
         {
-            var student = circlesComboBox.SelectedItem as Circle;
+            students1 = App.db.Students.ToList();
+            var students = circlesComboBox.SelectedItem as Circle;
 
             studentsInCirclesListView.ItemsSource = null;
-            studentsInCirclesListView.ItemsSource = student.Students.ToList();
+            studentsInCirclesListView.ItemsSource = students.Students.ToList();
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -82,12 +78,25 @@ namespace SchoolActivities
             }
             else
             {
-
                 studentsInCirclesListView.ItemsSource = student.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower()) 
                                                                            || c.FirstName.ToLower().Contains(Search.Text.ToLower())
                                                                            || c.Patronymic.ToLower().Contains(Search.Text.ToLower())).ToList();
 
             }
+        }
+        public void PPS()
+        {
+            circles.Clear();
+            circles.Add(new Circle()
+            {
+                Title = "Все кружки",
+                Students = students1
+            });
+            foreach (var item in App.db.Circles.Include(r => r.Students).ToList())
+            {
+                circles.Add(item);
+            }
+            circlesComboBox.ItemsSource = circles;
         }
     }
 }

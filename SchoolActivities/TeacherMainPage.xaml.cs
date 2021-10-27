@@ -118,7 +118,7 @@ namespace SchoolActivities
 
         private void GoHome(object sender, MouseButtonEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new FirstPage());
         }
     }
 }

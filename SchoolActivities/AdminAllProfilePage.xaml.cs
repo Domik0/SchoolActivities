@@ -222,7 +222,7 @@ namespace SchoolActivities
             {
                 if (isAdd)
                 {
-                    if (fioTextBox.Text != "" && birthdayDatePicker.SelectedDate != null && classComboBox.SelectedItem != null)
+                    if (fioTextBox.Text != "" && birthdayDatePicker.SelectedDate != null && classComboBox.SelectedItem != null && circleComboBox.SelectedItem != null)
                     {
                         Student student = new Student();
                         string[] fioMas = fioTextBox.Text.Split(' ');

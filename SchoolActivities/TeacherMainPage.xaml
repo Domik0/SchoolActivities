@@ -21,7 +21,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="0" Source="/Images/home.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="80" Margin="25" MouseUp="GoHome"/>
+            <Image Grid.Column="0" Source="/Images/home.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="80" Margin="25" MouseUp="GoHome" Cursor="Hand"/>
 
 
             <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0">

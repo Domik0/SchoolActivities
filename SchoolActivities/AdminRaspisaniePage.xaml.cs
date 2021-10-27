@@ -80,7 +80,7 @@ namespace SchoolActivities
         private void CircleInDay_click(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(
-                new AdminRaspisanieDayPage(((sender as Border).DataContext) as CirclesForDay));
+                new AdminRaspisanieDayPage(this, ((sender as Border).DataContext) as CirclesForDay));
         }
 
         private void ComboBoxChanged(object sender, SelectionChangedEventArgs e)

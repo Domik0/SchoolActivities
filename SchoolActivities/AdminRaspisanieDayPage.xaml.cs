@@ -25,7 +25,7 @@ namespace SchoolActivities
         private List<Student> reportList;
         private AdminRaspisaniePage page;
 
-        public AdminRaspisanieDayPage(CirclesForDay cfd, AdminRaspisaniePage page)
+        public AdminRaspisanieDayPage(AdminRaspisaniePage page, CirclesForDay cfd)
         {
             this.page = page;
             this.circle = cfd.cir;

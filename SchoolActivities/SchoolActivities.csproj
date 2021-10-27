@@ -271,11 +271,6 @@
     <Resource Include="Images\IconPhone.png" />
     <Resource Include="Images\IconSearch.png" />
     <Resource Include="Images\jackdaw.png" />
-    <Resource Include="Images\teacherPhoto.png" />
-    <Resource Include="Images\circlePhoto.png" />
-    <Resource Include="Images\strelkaGoBack.png" />
-    <Resource Include="Images\plusCircle.png" />
-    <Resource Include="Images\uchenik.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

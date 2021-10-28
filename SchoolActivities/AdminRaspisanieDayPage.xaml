@@ -48,6 +48,8 @@
             </StackPanel>
         </Border>
 
+        <TextBlock x:Name="TitleSave" Grid.Column="0" Visibility="Hidden" Text="Сохранено !" Foreground="Green" FontSize="25" FontWeight="Medium" VerticalAlignment="Bottom" Margin="50,170" HorizontalAlignment="Center"/>
+
         <Border Grid.Column="0" VerticalAlignment="Bottom" Margin="50,110"
                 Width="200" Height="50" CornerRadius="15" MouseUp="SaveClick">
             <TextBlock Text="Сохранить" VerticalAlignment="Center" HorizontalAlignment="Center"

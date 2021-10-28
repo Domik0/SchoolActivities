@@ -20,10 +20,14 @@ namespace SchoolActivities
     /// </summary>
     public partial class AdminTeachersPage : Page
     {
-        List<Teacher> teachers = App.db.Teachers.ToList();
+        List<Teacher> teachers;
         bool isAdd;
-        public AdminTeachersPage()
+        Teacher teacher;
+
+        public AdminTeachersPage(Teacher teacher)
         {
+            this.teacher = teacher;
+            teachers = App.db.Teachers.ToList().Where(t => t != teacher).ToList();
             InitializeComponent();
             teacherList.ItemsSource = teachers;
         }

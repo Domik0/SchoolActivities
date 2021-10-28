@@ -59,6 +59,7 @@ namespace SchoolActivities
 
         private void SaveClick(object sender, MouseButtonEventArgs e)
         {
+            TitleSave.Visibility = Visibility.Visible;
             timeTable.Students = reportList;
             App.db.SaveChanges();
         }

@@ -95,6 +95,7 @@ namespace SchoolActivities
                 Teacher teacher = teachersComboBox.SelectedItem as Teacher;
                 Circle circle = App.db.Circles.Where(i => i.Id == doCircke.Id).FirstOrDefault();
 
+                circle.Title = titleCircleTextBox.Text;
                 circle.Teacher.LastName = teacher.LastName;
                 circle.Teacher.FirstName = teacher.FirstName;
                 circle.Teacher.Patronymic = teacher.Patronymic;

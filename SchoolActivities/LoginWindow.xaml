@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolActivities"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Расписание кружков" Height="720" Width="1470">
+        Title="Расписание кружков" Height="720" Width="1470" Icon="Images/iconApplication.png">
     <Grid>
         <Frame Background="#ffdadada" NavigationUIVisibility="Hidden" Source="FirstPage.xaml"/>
     </Grid>

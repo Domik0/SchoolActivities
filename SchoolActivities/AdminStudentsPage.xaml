@@ -5,17 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SchoolActivities"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="980"
+      d:DesignHeight="720" d:DesignWidth="1280"
       Title="AdminStudentsPage">
 
     <Grid Background="#fff">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="210"/>
-            <ColumnDefinition Width="210"/>
-            <ColumnDefinition Width="210"/>
-            <ColumnDefinition Width="210"/>
-            <ColumnDefinition Width="210"/>
-            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="230"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -33,7 +33,23 @@
             </ComboBox>
         </StackPanel>
 
-        <Border Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="3" CornerRadius="10" Margin="5" HorizontalAlignment="Center" Width="300" >
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Width="120" Height="40" CornerRadius="15" MouseUp="ShowAllStudent">
+            <TextBlock Text="Все ученики" Foreground="White" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="Green"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+
+        <Border Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="3" CornerRadius="10" Margin="5" HorizontalAlignment="Right" Width="300" >
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,0,5,0">
                 <TextBox x:Name="Search" BorderThickness="0" Width="245" Height="30" TextChanged="Search_TextChanged" FontSize="17" BorderBrush="Transparent" VerticalAlignment="Bottom"/>
                 <Image Source="Images/IconSearch.png" Width="30"  Margin="5,1,0,1" Cursor="Hand"/>
@@ -59,11 +75,11 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="210"/>
-                            <ColumnDefinition Width="210"/>
-                            <ColumnDefinition Width="210"/>
-                            <ColumnDefinition Width="210"/>
-                            <ColumnDefinition Width="210"/>
+                            <ColumnDefinition Width="230"/>
+                            <ColumnDefinition Width="230"/>
+                            <ColumnDefinition Width="230"/>
+                            <ColumnDefinition Width="230"/>
+                            <ColumnDefinition Width="230"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>

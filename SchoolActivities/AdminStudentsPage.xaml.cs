@@ -23,14 +23,20 @@ namespace SchoolActivities
     public partial class AdminStudentsPage : Page
     {
         bool isAdd;
-        ObservableCollection<Circle> circles = new ObservableCollection<Circle>();
-        List<Student> students1 = new List<Student>();
+        List<Circle> circles = App.db.Circles.Include(r => r.Students).ToList();
+
         public AdminStudentsPage()
         {
             InitializeComponent();
-            UpdateListCircles();
-            PPS();
 
+            List<Circle> circles = new List<Circle>();
+            circles.Add(new Circle()
+            {
+                Title = "Все кружки",
+                Students = App.db.Students.ToList()
+            });
+            circles.AddRange(App.db.Circles.ToList());
+            circlesComboBox.ItemsSource = circles;
         }
 
         private void AddStudentImage_MouseUp(object sender, MouseButtonEventArgs e)
@@ -38,19 +44,16 @@ namespace SchoolActivities
             isAdd = true;
             AdminMainPage.frame.Content = new AdminAllProfilePage(this, isAdd);
         }
-
         private void CirclesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateListCircles();
         }
-
         private void UpdateStudent_Click(object sender, RoutedEventArgs e)
         {
             isAdd = false;
             Student student = studentsInCirclesListView.SelectedItem as Student;
             AdminMainPage.frame.Content = new AdminAllProfilePage(student, this, isAdd);
         }
-
         private void DeleteStudent_Click(object sender, RoutedEventArgs e)
         {
             Student student = studentsInCirclesListView.SelectedItem as Student;
@@ -61,42 +64,26 @@ namespace SchoolActivities
         }
         public void UpdateListCircles()
         {
-            students1 = App.db.Students.ToList();
-            var students = circlesComboBox.SelectedItem as Circle;
+            var student = circlesComboBox.SelectedItem as Circle;
 
             studentsInCirclesListView.ItemsSource = null;
-            studentsInCirclesListView.ItemsSource = students.Students.ToList();
+            studentsInCirclesListView.ItemsSource = student.Students.ToList();
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             var student = (circlesComboBox.SelectedItem as Circle).Students.ToList();
-
             if (Search.Text.Length == 0)
             {
                 studentsInCirclesListView.ItemsSource = student;
             }
             else
             {
-                studentsInCirclesListView.ItemsSource = student.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower()) 
+                studentsInCirclesListView.ItemsSource = student.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower())
                                                                            || c.FirstName.ToLower().Contains(Search.Text.ToLower())
-                                                                           || c.Patronymic.ToLower().Contains(Search.Text.ToLower())).ToList();
-
+                                                                           || c.Patronymic.ToLower().Contains(Search.Text.ToLower())
+                                                                           || c.ClassGroup.ToLower().Contains(Search.Text.ToLower())).ToList();
             }
-        }
-        public void PPS()
-        {
-            circles.Clear();
-            circles.Add(new Circle()
-            {
-                Title = "Все кружки",
-                Students = students1
-            });
-            foreach (var item in App.db.Circles.Include(r => r.Students).ToList())
-            {
-                circles.Add(item);
-            }
-            circlesComboBox.ItemsSource = circles;
         }
     }
 }

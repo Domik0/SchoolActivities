@@ -317,6 +317,7 @@
     <Resource Include="Images\rasp.png" />
     <Resource Include="Images\home.png" />
     <Resource Include="Images\icons-inspektsia.png" />
+    <Resource Include="Images\iconApplication.png" />
     <Content Include="SchoolActivity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolActivity.edmx</DependentUpon>

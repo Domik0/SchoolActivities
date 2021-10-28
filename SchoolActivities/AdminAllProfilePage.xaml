@@ -25,6 +25,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Image Source="Images/strelkaGoBack.png" MouseUp="Image_MouseUp" Cursor="Hand"/>
         <Image Name="iconImage" Source="Images/IconPeople.png" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"/>
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical">
             <TextBox Name="fioTextBox" Text="FIO"  FontSize="20" HorizontalAlignment="Center" BorderThickness="0" Height="35"/>

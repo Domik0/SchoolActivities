@@ -304,5 +304,10 @@ namespace SchoolActivities
                 }
             }
         }
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

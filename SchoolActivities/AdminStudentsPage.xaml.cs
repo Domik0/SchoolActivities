@@ -28,14 +28,6 @@ namespace SchoolActivities
         public AdminStudentsPage()
         {
             InitializeComponent();
-
-            List<Circle> circles = new List<Circle>();
-            circles.Add(new Circle()
-            {
-                Title = "Все кружки",
-                Students = App.db.Students.ToList()
-            });
-            circles.AddRange(App.db.Circles.ToList());
             circlesComboBox.ItemsSource = circles;
         }
 
@@ -64,10 +56,19 @@ namespace SchoolActivities
         }
         public void UpdateListCircles()
         {
-            var student = circlesComboBox.SelectedItem as Circle;
+            if (circlesComboBox.SelectedItem != null)
+            {
+                var student = circlesComboBox.SelectedItem as Circle;
 
-            studentsInCirclesListView.ItemsSource = null;
-            studentsInCirclesListView.ItemsSource = student.Students.ToList();
+                studentsInCirclesListView.ItemsSource = null;
+                studentsInCirclesListView.ItemsSource = student.Students.ToList();
+            }
+            else
+            {
+                studentsInCirclesListView.ItemsSource = null;
+                studentsInCirclesListView.ItemsSource = App.db.Students.ToList();
+                circlesComboBox.SelectedItem = null;
+            }
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -84,6 +85,13 @@ namespace SchoolActivities
                                                                            || c.Patronymic.ToLower().Contains(Search.Text.ToLower())
                                                                            || c.ClassGroup.ToLower().Contains(Search.Text.ToLower())).ToList();
             }
+        }
+
+        private void ShowAllStudent(object sender, MouseButtonEventArgs e)
+        {
+            studentsInCirclesListView.ItemsSource = null;
+            studentsInCirclesListView.ItemsSource = App.db.Students.ToList();
+            circlesComboBox.SelectedItem = null;
         }
     }
 }

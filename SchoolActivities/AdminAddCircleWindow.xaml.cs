@@ -22,9 +22,11 @@ namespace SchoolActivities
     public partial class AdminAddCircleWindow : Window
     {
         private DateTime? dateTime = null;
+        private AdminRaspisaniePage page;
 
-        public AdminAddCircleWindow(DateTime? dt)
+        public AdminAddCircleWindow(AdminRaspisaniePage page,  DateTime? dt)
         {
+            this.page = page;
             dateTime = dt;
             InitializeComponent();
             DateTitle.DataContext = dateTime;
@@ -45,6 +47,7 @@ namespace SchoolActivities
             });
             Console.WriteLine();
             App.db.SaveChanges();
+            page.GenerateCalendary();
             Close();
         }
     }

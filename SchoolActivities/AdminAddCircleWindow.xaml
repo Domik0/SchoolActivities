@@ -12,7 +12,7 @@
             <TextBlock x:Name="DateTitle" Text="{Binding ., StringFormat='{}Дата: {0:d}', ConverterCulture=ru}" FontSize="15" Margin="20, 10"/>
             <StackPanel Orientation="Horizontal" Margin="10">
                 <TextBlock Text="Время:" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
-                <TextBox x:Name="timeTitle" Text="{Binding ., StringFormat='H:mm'}" FontSize="15" Height="25" Width="80"/>
+                <TextBox x:Name="timeTitle" Text="{Binding ., StringFormat='HH:mm'}" FontSize="15" Height="25" Width="80"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,10,10,20">
                 <TextBlock Text="Кружок:" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>

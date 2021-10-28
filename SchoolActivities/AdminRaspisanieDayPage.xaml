@@ -33,8 +33,8 @@
                 <TextBlock x:Name="NamePrepod" FontSize="18" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Center">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} {1} {2}">
-                            <Binding Path="FirstName"/>
                             <Binding Path="LastName"/>
+                            <Binding Path="FirstName"/>
                             <Binding Path="Patronymic"/>
                         </MultiBinding>
                     </TextBlock.Text>

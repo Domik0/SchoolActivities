@@ -50,8 +50,8 @@
             <TextBlock x:Name="NamePrepod" Grid.Column="2" FontSize="26" HorizontalAlignment="Right" Margin="10,10">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0} {1} {2}">
-                        <Binding Path="FirstName"/>
                         <Binding Path="LastName"/>
+                        <Binding Path="FirstName"/>
                         <Binding Path="Patronymic"/>
                     </MultiBinding>
                 </TextBlock.Text>

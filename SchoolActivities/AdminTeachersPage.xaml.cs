@@ -49,7 +49,9 @@ namespace SchoolActivities
             else
             {
                 //teacher.ItemsSource = teachers.Where(c => c.LastName.ToString().StartsWith(Search.Text)).ToList();
-                teacherList.ItemsSource = teachers.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower())).ToList();
+                teacherList.ItemsSource = teachers.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower())
+                                                                    || c.FirstName.ToLower().Contains(Search.Text.ToLower())
+                                                                    || c.Patronymic.ToLower().Contains(Search.Text.ToLower())).ToList();
 
             }
         }

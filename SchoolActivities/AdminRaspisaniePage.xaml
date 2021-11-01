@@ -100,7 +100,7 @@
                                 <StackPanel Margin="3">
                                     <Grid>
                                         <TextBlock Text="{Binding Day, StringFormat=dd}" FontSize="18" FontWeight="Bold"/>
-                                        <Border Padding="0" MouseUp="AddCircle" DataContext="{Binding Day}"
+                                        <Border Padding="0" MouseUp="AddCircle"
                                                 HorizontalAlignment="Right" Width="25" CornerRadius="12.5" Margin="0,0,10,0">
                                             <TextBlock Text="+" FontWeight="Medium" FontSize="20"
                                                        Foreground="White" Margin="6,-4,0,0"/>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SchoolActivities"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="AdminAddCircleWindow" Height="280" Width="270">
+        Title="AdminAddCircleWindow" Height="300" Width="370">
     <Grid>
         <StackPanel>
             <TextBlock Text="Добавление кружка" HorizontalAlignment="Center" FontSize="20" FontWeight="Medium"/>
@@ -17,15 +17,19 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,10,10,20">
                 <TextBlock Text="Кружок:" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
-                <ComboBox x:Name="predmetComboBox" Width="150" Height="40" SelectedIndex="0"
+                <ComboBox x:Name="predmetComboBox" Width="250" Height="60" SelectedIndex="0"
                           FontSize="20" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Title}"
-                                           Margin="0,0,10,0"/>
-                                <TextBlock Text="{Binding Teacher.Name}"/>
-
+                                <TextBlock TextWrapping="Wrap" Width="200">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="Title"/>
+                                            <Binding Path="Teacher.Name"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>

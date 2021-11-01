@@ -73,7 +73,17 @@ namespace SchoolActivities
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var student = (circlesComboBox.SelectedItem as Circle).Students.ToList();
+            var student = new List<Student>();
+            var selectedItem = (circlesComboBox.SelectedItem as Circle);
+
+            if(selectedItem != null)
+            {
+                student = selectedItem.Students.ToList();
+            }
+            else
+            {
+                student = App.db.Students.ToList();
+            }
             if (Search.Text.Length == 0)
             {
                 studentsInCirclesListView.ItemsSource = student;

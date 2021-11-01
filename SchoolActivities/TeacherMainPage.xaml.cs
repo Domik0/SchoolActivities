@@ -103,8 +103,12 @@ namespace SchoolActivities
 
         private void CircleInDay_click(object sender, MouseButtonEventArgs e)
         {
-            NavigationService.Navigate(
-                new TeacherCircleDayPage(((sender as Border).DataContext) as CirclesForDay));
+            var itemDT = (((sender as Border).DataContext) as CirclesForDay);
+            if (itemDT.dt <= DateTime.Now && itemDT.dt >= DateTime.Now)
+            {
+                NavigationService.Navigate(
+                    new TeacherCircleDayPage(((sender as Border).DataContext) as CirclesForDay));
+            }
         }
 
         private void ComboBoxChanged(object sender, SelectionChangedEventArgs e)

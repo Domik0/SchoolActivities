@@ -23,11 +23,13 @@ namespace SchoolActivities
     {
         private DateTime? dateTime = null;
         private AdminRaspisaniePage page;
+        private DayForCalendary day;
 
-        public AdminAddCircleWindow(AdminRaspisaniePage page,  DateTime? dt)
+        public AdminAddCircleWindow(AdminRaspisaniePage page, DayForCalendary day)
         {
+            this.day = day;
             this.page = page;
-            dateTime = dt;
+            dateTime = day.Day;
             InitializeComponent();
             DateTitle.DataContext = dateTime;
             timeTitle.DataContext = dateTime;
@@ -45,10 +47,46 @@ namespace SchoolActivities
                 Circle = predmetComboBox.SelectedItem as Circle,
                 DateAndTime = dateTime
             });
-            Console.WriteLine();
-            App.db.SaveChanges();
-            page.GenerateCalendary();
-            Close();
+            bool flagFreeTeacher = true;
+            bool flagFreeCabinet = true;
+            foreach (var circlesForDay in day.Circles.Where(c => c.cir.Teacher == (predmetComboBox.SelectedItem as Circle).Teacher).ToList())
+            {
+                if (circlesForDay.dt < dateTime.Value.AddHours(2) || circlesForDay.dt > dateTime.Value.AddHours(-2))
+                {
+                    flagFreeTeacher = false;
+                }
+            }
+            foreach (var circlesForDay in day.Circles.Where(c => c.cir.Cabinet == (predmetComboBox.SelectedItem as Circle).Cabinet).ToList())
+            {
+                if (circlesForDay.dt < dateTime.Value.AddHours(2) || circlesForDay.dt > dateTime.Value.AddHours(-2))
+                {
+                    if(circlesForDay.cir.Cabinet == (predmetComboBox.SelectedItem as Circle).Cabinet)
+                    {
+                        flagFreeCabinet = false;
+                    }
+                }
+            }
+            if(flagFreeTeacher && flagFreeCabinet)
+            {
+                App.db.SaveChanges();
+                page.GenerateCalendary();
+                Close();
+            }
+            else if (!flagFreeTeacher && !flagFreeCabinet)
+            {
+                MessageBox.Show("В это время учитель и кабинет заняты", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!flagFreeTeacher && flagFreeCabinet)
+            {
+                MessageBox.Show("В это время учитель занят", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (flagFreeTeacher && !flagFreeCabinet)
+            {
+                MessageBox.Show("В это время кабинет занят", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

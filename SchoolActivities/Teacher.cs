@@ -11,7 +11,9 @@ namespace SchoolActivities
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
+
     public partial class Teacher
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,6 +32,7 @@ namespace SchoolActivities
         public Nullable<bool> AdministratorStatus { get; set; }
         public string Password { get; set; }
 
+        [NotMapped]
         public string Name
         {
             get { return LastName + " " + FirstName[0] + "." + Patronymic[0] + "."; }

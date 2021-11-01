@@ -29,6 +29,11 @@ namespace SchoolActivities
         public Nullable<double> Experience { get; set; }
         public Nullable<bool> AdministratorStatus { get; set; }
         public string Password { get; set; }
+
+        public string Name
+        {
+            get { return LastName + " " + FirstName[0] + "." + Patronymic[0] + "."; }
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Circle> Circles { get; set; }

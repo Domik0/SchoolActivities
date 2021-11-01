@@ -21,7 +21,12 @@
                           FontSize="20" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Title}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Title}"
+                                           Margin="0,0,10,0"/>
+                                <TextBlock Text="{Binding Teacher.Name}"/>
+
+                            </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>

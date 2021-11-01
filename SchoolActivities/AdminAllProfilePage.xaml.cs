@@ -23,6 +23,8 @@ namespace SchoolActivities
         bool isAdd;
         AdminStudentsPage parentStudent;
         Student dopStudent;
+        List<int> stagYears = new List<int>();
+        List<string> classes = new List<string>();
         List<Circle> circles = App.db.Circles.ToList();
         List<Circle> trueCircles = new List<Circle>();
 
@@ -42,7 +44,6 @@ namespace SchoolActivities
 
             birthdayDatePicker.SelectedDate = student.Birthday;
 
-            List<string> classes = new List<string>();
             for (int i = 1; i < 12; i++)
             {
                 classes.Add(i.ToString());
@@ -130,7 +131,6 @@ namespace SchoolActivities
             comboStackPanel.Visibility = Visibility.Hidden;
             classTextBlock.Text = "Лет";
 
-            List<int> stagYears = new List<int>();
             for (int i = 0; i < 99; i++)
             {
                 stagYears.Add(i);
@@ -185,7 +185,7 @@ namespace SchoolActivities
                 }
                 else
                 {
-                    if (birthdayDatePicker.SelectedDate != null &&phoneTextBox.Text != "" && passwordTextBox.Text != "")
+                    if (birthdayDatePicker.SelectedDate != null && phoneTextBox.Text != "" && passwordTextBox.Text != "")
                     {
                         Teacher teacher = App.db.Teachers.Where(t => t.Id == dopTeacher.Id).FirstOrDefault();
                         string[] fioMas = fioTextBox.Text.Split(' ');
@@ -308,6 +308,64 @@ namespace SchoolActivities
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void birthdayDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isTeacher)
+            {
+                DatePicker datePicker = (sender as DatePicker);
+                int countYear = 1;
+                if (datePicker.SelectedDate.HasValue && (DateTime.Now <= birthdayDatePicker.SelectedDate.Value.AddYears(20) ||
+                    (DateTime.Now.Year - birthdayDatePicker.SelectedDate.Value.Year) > 65))
+                {
+                    birthdayDatePicker.SelectedDate = null;
+                }
+                else if (datePicker.SelectedDate.HasValue)
+                {
+                    countYear = DateTime.Now.Year - birthdayDatePicker.SelectedDate.Value.AddYears(20).Year;
+                    stagYears = new List<int>();
+                    for (int i = 20; i < countYear; i++)
+                    {
+                        stagYears.Add(i);
+                    }
+                    classComboBox.ItemsSource = stagYears;
+                }
+
+
+            }
+            else
+            {
+                DatePicker datePicker = (sender as DatePicker);
+                int countYear = 1;
+                if (datePicker.SelectedDate.HasValue && (DateTime.Now <= birthdayDatePicker.SelectedDate.Value.AddYears(7) ||
+                    (DateTime.Now.Year - birthdayDatePicker.SelectedDate.Value.AddYears(7).Year) > 12))
+                {
+                    birthdayDatePicker.SelectedDate = null;
+                }
+                else if (datePicker.SelectedDate.HasValue)
+                {
+                    countYear = DateTime.Now.Year - birthdayDatePicker.SelectedDate.Value.Year - 7;
+                    classes = new List<string>();
+                    for (int i = countYear - 2; i < countYear + 2; i++)
+                    {
+                        if (i < 12 && i > 0)
+                        {
+                            classes.Add(i.ToString());
+                        }
+                    }
+                    classComboBox.ItemsSource = classes;
+                }
+            }
+        }
+
+        private void classComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (birthdayDatePicker.SelectedDate.HasValue)
+            {
+
+
+            }
         }
     }
 }

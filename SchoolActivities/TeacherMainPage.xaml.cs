@@ -104,10 +104,13 @@ namespace SchoolActivities
         private void CircleInDay_click(object sender, MouseButtonEventArgs e)
         {
             var itemDT = (((sender as Border).DataContext) as CirclesForDay);
-            if (itemDT.dt <= DateTime.Now && itemDT.dt >= DateTime.Now)
+            if (itemDT.dt <= DateTime.Now.AddDays(1.5) && itemDT.dt >= DateTime.Now.AddDays(-1.5))
             {
-                NavigationService.Navigate(
+                if (sender != null)
+                {
+                    NavigationService.Navigate(
                     new TeacherCircleDayPage(((sender as Border).DataContext) as CirclesForDay));
+                }
             }
         }
 

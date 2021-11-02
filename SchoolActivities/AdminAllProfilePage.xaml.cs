@@ -331,8 +331,6 @@ namespace SchoolActivities
                     }
                     classComboBox.ItemsSource = stagYears;
                 }
-
-
             }
             else
             {
@@ -356,15 +354,6 @@ namespace SchoolActivities
                     }
                     classComboBox.ItemsSource = classes;
                 }
-            }
-        }
-
-        private void classComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (birthdayDatePicker.SelectedDate.HasValue)
-            {
-
-
             }
         }
     }

@@ -24,10 +24,12 @@ namespace SchoolActivities
         private DateTime? dateTime = null;
         private AdminRaspisaniePage page;
         private DayForCalendary day;
+        private List<DayForCalendary> month;
 
-        public AdminAddCircleWindow(AdminRaspisaniePage page, DayForCalendary day)
+        public AdminAddCircleWindow(AdminRaspisaniePage page, DayForCalendary day, List<DayForCalendary> month)
         {
             this.day = day;
+            this.month = month;
             this.page = page;
             dateTime = day.Day;
             InitializeComponent();
@@ -41,52 +43,74 @@ namespace SchoolActivities
             DateTime time = DateTime.ParseExact(timeTitle.Text, "HH:mm",
                 CultureInfo.InvariantCulture);
             dateTime = new DateTime(dateTime.Value.Year, dateTime.Value.Month, dateTime.Value.Day, time.Hour, time.Minute, time.Second);
-            App.db.TimeTables.Add(new TimeTable()
+            int count = 0;
+            if (AllWeek.IsChecked == true)
             {
-                Id = App.db.TimeTables.ToList().Last().Id + 1,
-                Circle = predmetComboBox.SelectedItem as Circle,
-                DateAndTime = dateTime
-            });
-            bool flagFreeTeacher = true;
-            bool flagFreeCabinet = true;
-            foreach (var circlesForDay in day.Circles.Where(c => c.cir.Teacher == (predmetComboBox.SelectedItem as Circle).Teacher).ToList())
-            {
-                if (circlesForDay.dt < dateTime.Value.AddHours(2) || circlesForDay.dt > dateTime.Value.AddHours(-2))
+                //count = 3 - new GregorianCalendar().GetWeekOfYear((DateTime)dateTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) % 4;
+                while (dateTime.Value.AddDays(7 * count).Month == dateTime.Value.Month)
                 {
-                    flagFreeTeacher = false;
+                    count++;
                 }
+                count--;
             }
-            foreach (var circlesForDay in day.Circles.Where(c => c.cir.Cabinet == (predmetComboBox.SelectedItem as Circle).Cabinet).ToList())
+            else
             {
-                if (circlesForDay.dt < dateTime.Value.AddHours(2) || circlesForDay.dt > dateTime.Value.AddHours(-2))
+                count = 0;
+            }
+            for (int i = 0; i <= count; i++)
+            {
+                bool flagFreeTeacher = true;
+                bool flagFreeCabinet = true;
+                DateTime dtCheck = dateTime.Value.AddDays(7 * i);
+                DayForCalendary dayThis = (month.Count(m => m.Day.Value.Day == dtCheck.Day) > 0
+                    ? month.First(m => m.Day.Value.Day == dtCheck.Day)
+                    : new DayForCalendary());
+                foreach (var circlesForDay in dayThis.Circles.Where(c => c.cir.Teacher == (predmetComboBox.SelectedItem as Circle).Teacher).ToList())
                 {
-                    if(circlesForDay.cir.Cabinet == (predmetComboBox.SelectedItem as Circle).Cabinet)
+                    if (circlesForDay.dt < dtCheck.AddHours(2) || circlesForDay.dt > dtCheck.AddHours(-2))
                     {
-                        flagFreeCabinet = false;
+                        flagFreeTeacher = false;
                     }
                 }
+                foreach (var circlesForDay in dayThis.Circles.Where(c => c.cir.Cabinet == (predmetComboBox.SelectedItem as Circle).Cabinet).ToList())
+                {
+                    if (circlesForDay.dt < dtCheck.AddHours(2) || circlesForDay.dt > dtCheck.AddHours(-2))
+                    {
+                        if (circlesForDay.cir.Cabinet == (predmetComboBox.SelectedItem as Circle).Cabinet)
+                        {
+                            flagFreeCabinet = false;
+                        }
+                    }
+                }
+                if (flagFreeTeacher && flagFreeCabinet)
+                {
+                    App.db.TimeTables.Add(new TimeTable()
+                    {
+                        Id = App.db.TimeTables.Local.ToList().Last().Id + 1,
+                        Circle = predmetComboBox.SelectedItem as Circle,
+                        DateAndTime = dtCheck
+                    });
+                    App.db.SaveChanges();
+                }
+                else if (!flagFreeTeacher && !flagFreeCabinet)
+                {
+                    MessageBox.Show($"В {dateTime.Value.AddDays(7 * count)} учитель и кабинет №{(predmetComboBox.SelectedItem as Circle).Cabinet} заняты", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (!flagFreeTeacher && flagFreeCabinet)
+                {
+                    MessageBox.Show($"В {dateTime.Value.AddDays(7 * count)} учитель занят", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (flagFreeTeacher && !flagFreeCabinet)
+                {
+                    MessageBox.Show($"В это время кабинет №{(predmetComboBox.SelectedItem as Circle).Cabinet} занят", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            if(flagFreeTeacher && flagFreeCabinet)
-            {
-                App.db.SaveChanges();
-                page.GenerateCalendary();
-                Close();
-            }
-            else if (!flagFreeTeacher && !flagFreeCabinet)
-            {
-                MessageBox.Show("В это время учитель и кабинет заняты", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (!flagFreeTeacher && flagFreeCabinet)
-            {
-                MessageBox.Show("В это время учитель занят", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (flagFreeTeacher && !flagFreeCabinet)
-            {
-                MessageBox.Show("В это время кабинет занят", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
+            page.GenerateCalendary();
+            Close();
         }
     }
 }

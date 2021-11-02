@@ -23,6 +23,18 @@ namespace SchoolActivities
         Circle doCircke;
         AdminCirclesPage parent;
         bool isAdd;
+
+        private List<string> listCabinet = new List<string>()
+        {
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107"
+        };
+
         public AdminCirclesInfoPage(Circle circle, AdminCirclesPage parent, bool isAdd)
         {
             InitializeComponent();
@@ -34,8 +46,8 @@ namespace SchoolActivities
             circleGrid.DataContext = circle;
             teachersComboBox.ItemsSource = App.db.Teachers.ToList();
             teachersComboBox.SelectedItem = circle.Teacher;
-            kabinetComboBox.ItemsSource = App.db.Circles.ToList().Distinct();
-            kabinetComboBox.SelectedItem = circle;
+            kabinetComboBox.ItemsSource = listCabinet;
+            kabinetComboBox.SelectedItem = circle.Cabinet;
             titleCircleTextBox.Text = circle.Title;
         }
         public AdminCirclesInfoPage(AdminCirclesPage parent, bool isAdd)
@@ -63,14 +75,14 @@ namespace SchoolActivities
                     if (teachersComboBox.SelectedIndex != -1 && kabinetComboBox.SelectedIndex != -1)
                     {
                         Teacher teacher = teachersComboBox.SelectedItem as Teacher;
-                        Circle dopCircle = kabinetComboBox.SelectedItem as Circle;
+                        string dopCircle = kabinetComboBox.SelectedItem as string;
 
                         Circle circle = new Circle()
                         {
                             Id = App.db.Circles.ToList().Last().Id + 1,
                             Title = titleCircleTextBox.Text,
                             Teacher = teacher,
-                            Cabinet = dopCircle.Cabinet
+                            Cabinet = dopCircle
                         };
                         App.db.Circles.Add(circle);
                         App.db.SaveChanges();

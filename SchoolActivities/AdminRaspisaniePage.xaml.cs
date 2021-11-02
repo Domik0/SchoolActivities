@@ -94,7 +94,7 @@ namespace SchoolActivities
 
         private void AddCircle(object sender, MouseButtonEventArgs e)
         {
-            AdminAddCircleWindow ac = new AdminAddCircleWindow(this, (sender as Border).DataContext as DayForCalendary);
+            AdminAddCircleWindow ac = new AdminAddCircleWindow(this, (sender as Border).DataContext as DayForCalendary, Calendary.ItemsSource as List<DayForCalendary>);
             ac.Show();
         }
     }

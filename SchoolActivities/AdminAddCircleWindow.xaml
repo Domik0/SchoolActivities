@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SchoolActivities"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="AdminAddCircleWindow" Height="300" Width="370">
+        Title="AdminAddCircleWindow" Height="300" Width="400">
     <Grid>
         <StackPanel>
             <TextBlock Text="Добавление кружка" HorizontalAlignment="Center" FontSize="20" FontWeight="Medium"/>
@@ -14,6 +14,9 @@
             <StackPanel Orientation="Horizontal" Margin="10">
                 <TextBlock Text="Время:" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
                 <TextBox x:Name="timeTitle" Text="{Binding ., StringFormat='HH:mm'}" FontSize="15" Height="25" Width="80"/>
+
+                <TextBlock Text="Добавить на все недели:" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>
+                <CheckBox x:Name="AllWeek" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,10,10,20">
                 <TextBlock Text="Кружок:" FontSize="15" Margin="10,0" VerticalAlignment="Center"/>

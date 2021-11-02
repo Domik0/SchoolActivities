@@ -36,7 +36,7 @@ namespace SchoolActivities
             countStudentsInCirclesTextBlock.Text = App.db.Students.Count().ToString();
             countCirclesTextBlock.Text = App.db.Circles.Count().ToString();
             countTeacherTextBlock.Text = App.db.Teachers.Count().ToString();
-            countCabinetsTextBlock.Text = App.db.Circles.Select(c => c.Cabinet).Count().ToString();
+            countCabinetsTextBlock.Text = "7";
         }
 
         private void FirstAdminPage_Loaded(object sender, RoutedEventArgs e)

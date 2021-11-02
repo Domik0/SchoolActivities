@@ -325,7 +325,7 @@ namespace SchoolActivities
                 {
                     countYear = DateTime.Now.Year - birthdayDatePicker.SelectedDate.Value.AddYears(20).Year;
                     stagYears = new List<int>();
-                    for (int i = 20; i < countYear; i++)
+                    for (int i = 1; i < countYear; i++)
                     {
                         stagYears.Add(i);
                     }

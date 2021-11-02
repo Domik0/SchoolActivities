@@ -61,12 +61,12 @@ namespace SchoolActivities
                 var student = circlesComboBox.SelectedItem as Circle;
 
                 studentsInCirclesListView.ItemsSource = null;
-                studentsInCirclesListView.ItemsSource = student.Students.ToList();
+                studentsInCirclesListView.ItemsSource = student.Students.OrderBy(s => s.LastName).ToList();
             }
             else
             {
                 studentsInCirclesListView.ItemsSource = null;
-                studentsInCirclesListView.ItemsSource = App.db.Students.ToList();
+                studentsInCirclesListView.ItemsSource = App.db.Students.OrderBy(s => s.LastName).ToList();
                 circlesComboBox.SelectedItem = null;
             }
         }

@@ -112,8 +112,8 @@ namespace SchoolActivities
                 circle.Teacher.FirstName = teacher.FirstName;
                 circle.Teacher.Patronymic = teacher.Patronymic;
 
-                Circle dopCircle = kabinetComboBox.SelectedItem as Circle;
-                circle.Cabinet = dopCircle.Cabinet;
+                string dopCircle = kabinetComboBox.SelectedItem as string;
+                circle.Cabinet = dopCircle;
 
                 App.db.SaveChanges();
 

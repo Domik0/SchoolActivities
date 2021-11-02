@@ -36,11 +36,13 @@ namespace SchoolActivities
         {
             if (Search.Text.Length == 0)
             {
-                teacherList.ItemsSource = teachers;
+                teacherList.ItemsSource = teachers.ToList().Where(t => t != teacher).ToList();
             }
             else
             {
-                teacherList.ItemsSource = teachers.Where(c => c.LastName.ToString().StartsWith(Search.Text)).ToList();
+                teacherList.ItemsSource = teachers.ToList().Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower())
+                                                                       || c.FirstName.ToLower().Contains(Search.Text.ToLower())
+                                                                       || c.Patronymic.ToLower().Contains(Search.Text.ToLower())).ToList();
             }
         }
 
@@ -48,11 +50,10 @@ namespace SchoolActivities
         {
             if (Search.Text.Length == 0)
             {
-                teacherList.ItemsSource = teachers;
+                teacherList.ItemsSource = teachers.Where(t => t != teacher).ToList();
             }
             else
             {
-                //teacher.ItemsSource = teachers.Where(c => c.LastName.ToString().StartsWith(Search.Text)).ToList();
                 teacherList.ItemsSource = teachers.Where(c => c.LastName.ToLower().Contains(Search.Text.ToLower())
                                                                     || c.FirstName.ToLower().Contains(Search.Text.ToLower())
                                                                     || c.Patronymic.ToLower().Contains(Search.Text.ToLower())).ToList();
@@ -68,11 +69,15 @@ namespace SchoolActivities
 
         private void DeleteButtom_Click(object sender, RoutedEventArgs e)
         {
-            var item = ((Button)sender).DataContext as Teacher;
-            App.db.Teachers.Remove(item);
-            App.db.SaveChanges();
+            if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                var item = ((Button)sender).DataContext as Teacher;
+                App.db.Teachers.Remove(item);
+                App.db.SaveChanges();
 
-            UpdateListTeachers();
+                UpdateListTeachers();
+            }
+
         }
 
         private void UpdateButtom_Click(object sender, RoutedEventArgs e)
@@ -84,7 +89,7 @@ namespace SchoolActivities
         public void UpdateListTeachers()
         {
             teacherList.ItemsSource = null;
-            teacherList.ItemsSource = App.db.Teachers.ToList();
+            teacherList.ItemsSource = App.db.Teachers.ToList().Where(t => t != teacher).ToList();
         }
     }
 }

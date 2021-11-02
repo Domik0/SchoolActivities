@@ -86,7 +86,7 @@ namespace SchoolActivities
                 {
                     App.db.TimeTables.Add(new TimeTable()
                     {
-                        Id = App.db.TimeTables.Local.ToList().Last().Id + 1,
+                        Id = App.db.TimeTables.ToList().Last().Id + 1,
                         Circle = predmetComboBox.SelectedItem as Circle,
                         DateAndTime = dtCheck
                     });
@@ -94,12 +94,12 @@ namespace SchoolActivities
                 }
                 else if (!flagFreeTeacher && !flagFreeCabinet)
                 {
-                    MessageBox.Show($"В {dateTime.Value.AddDays(7 * count)} учитель и кабинет №{(predmetComboBox.SelectedItem as Circle).Cabinet} заняты", "Ошибка",
+                    MessageBox.Show($"В {dtCheck} учитель и кабинет №{(predmetComboBox.SelectedItem as Circle).Cabinet} заняты", "Ошибка",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else if (!flagFreeTeacher && flagFreeCabinet)
                 {
-                    MessageBox.Show($"В {dateTime.Value.AddDays(7 * count)} учитель занят", "Ошибка",
+                    MessageBox.Show($"В {dtCheck} учитель занят", "Ошибка",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else if (flagFreeTeacher && !flagFreeCabinet)

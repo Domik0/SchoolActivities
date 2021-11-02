@@ -38,7 +38,7 @@
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Image Name="classImage" Source="Images/studentClass.png" Width="43" VerticalAlignment="Center" Margin="0,0,8,0"/>
-            <ComboBox Name="classComboBox" SelectionChanged="classComboBox_SelectionChanged" Width="60" Height="30" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <ComboBox Name="classComboBox" Width="60" Height="30" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBlock Name="classTextBlock" Text="Класс" FontSize="20" HorizontalAlignment="Center" TextAlignment="Center" Height="28" Margin="8,0,0,0"/>
         </StackPanel>
         <StackPanel Name="comboStackPanel" Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
